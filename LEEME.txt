@@ -1,0 +1,9 @@
+CUMPLEAÑOS HOY — MAQUETA INSTALABLE
+
+Archivos: subí TODOS los archivos de esta carpeta a un alojamiento web HTTPS. La página principal es index.html.
+
+Instalación: en Android, abrí el enlace en Chrome y usá Instalar aplicación o Agregar a pantalla principal. En iPhone, abrí el enlace en Safari, tocá Compartir y luego Agregar a pantalla de inicio.
+
+Notificaciones: el botón solicita permiso y permite mostrar una notificación de prueba en este dispositivo. IMPORTANTE: esta maqueta todavía NO tiene servidor de notificaciones push ni base de datos compartida. Por eso aún no puede enviar automáticamente invitaciones grupales a todos los integrantes con la aplicación cerrada. Para eso hace falta implementar y configurar un servicio push/backend, además de probarlo en Android y iPhone.
+
+La maqueta no envía mensajes de WhatsApp sin confirmación del usuario.
