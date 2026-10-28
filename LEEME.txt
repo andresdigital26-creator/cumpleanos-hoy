@@ -7,3 +7,9 @@ Instalación: en Android, abrí el enlace en Chrome y usá Instalar aplicación 
 Notificaciones: el botón solicita permiso y permite mostrar una notificación de prueba en este dispositivo. IMPORTANTE: esta maqueta todavía NO tiene servidor de notificaciones push ni base de datos compartida. Por eso aún no puede enviar automáticamente invitaciones grupales a todos los integrantes con la aplicación cerrada. Para eso hace falta implementar y configurar un servicio push/backend, además de probarlo en Android y iPhone.
 
 La maqueta no envía mensajes de WhatsApp sin confirmación del usuario.
+
+
+ACTUALIZACIÓN DE ESTA ENTREGA
+- Se reemplazaron los iconos de la aplicación por la versión visual nueva.
+- Los nombres icon-192.png e icon-512.png coinciden con manifest.webmanifest.
+- Esta entrega NO incorpora todavía backend compartido, invitaciones sincronizadas ni notificaciones push automáticas con la aplicación cerrada.
