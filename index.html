@@ -42,6 +42,39 @@ body{background:radial-gradient(ellipse at 15% 0%,#263e94 0,#091c4b 48%,#160f3c 
 @media(min-width:520px){.app{margin:18px auto;border-radius:28px;overflow:hidden}.nav{bottom:18px;border-radius:0 0 28px 28px}}
 @media(prefers-reduced-motion:no-preference){.card,.birthday,.gamecard,.notification-item{animation:cardIn .28s ease both}@keyframes cardIn{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}}
 
+
+/* REDISEÑO PRO: visual más cercano a la maqueta aprobada */
+:root{--bg:#080e35;--purple:#7144ed;--pink:#f34c9b;--line:#e6e4ff;--shadow:0 12px 30px rgba(33,25,99,.12)}
+body{background:radial-gradient(ellipse at 15% 0%,#4b31a7 0%,transparent 34%),linear-gradient(155deg,#080e35 0%,#18266b 48%,#31105e 100%);padding-bottom:24px}
+.app{max-width:520px;background:#f8f8ff;border-radius:30px 30px 0 0;padding:18px 16px 115px;min-height:100vh;box-shadow:0 0 60px #070b2e55}
+.top{margin:-18px -16px 0;padding:18px 16px 16px;background:linear-gradient(120deg,#10164b,#3b2084 65%,#6b2fa1);color:#fff;border-radius:0 0 25px 25px;box-shadow:0 10px 28px #12104425}
+.brand{font-size:12px;letter-spacing:1.1px;color:#fff;display:flex;align-items:center;gap:6px}
+.top .pill{background:#ffffff1d;color:#fff;border:1px solid #ffffff32;padding:9px 10px;font-size:11px}
+.hero{position:relative;margin:16px 0 13px;padding:23px 19px;border-radius:25px;background:linear-gradient(135deg,#161c58 0%,#5431b5 58%,#a53eb1 100%);color:white;overflow:hidden;box-shadow:0 13px 28px #3d2a9a28}
+.hero:after{content:'✨';position:absolute;right:13px;top:8px;font-size:43px;opacity:.6;transform:rotate(12deg)}
+.hero h1{font-size:29px;line-height:1.08;letter-spacing:-.8px;margin:4px 0 9px;max-width:85%;color:white}
+.hero h1 span{color:#ffb9e2}.hero p{color:#eee8ff;max-width:90%;font-size:13px}.cake{font-size:29px;margin-bottom:5px}
+.page{animation:pageEnter .22s ease both}.page:not(#inicio) .hero{background:linear-gradient(135deg,#17215e,#5333b7 65%,#a53eae)}
+@keyframes pageEnter{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.card,.birthday,.gamecard,.notification-item{border:1px solid #e8e5ff;border-radius:22px;box-shadow:var(--shadow);background:#fff}
+.notice{background:linear-gradient(110deg,#eee8ff,#ffe8f4);border:1px solid #e5d8ff;border-radius:20px}
+.sectionhead h2{font-size:18px;letter-spacing:-.3px}.sectionhead span{color:#7044df}
+.btn.primary,.primary{background:linear-gradient(115deg,#6940e8,#a33fca);box-shadow:0 6px 14px #7044df2b}.btn.secondary,.secondary{background:#eeeaff;color:#6236cb}
+.actions{gap:9px}.actions button,.btn{border-radius:15px}
+.birthday{padding:14px}.avatar{background:linear-gradient(135deg,#f0eaff,#ffe7f2)}
+.gamecard{padding:17px}.gamecard h3{font-size:17px}.option{background:#f8f6ff;border:1px solid #e3dcff;border-radius:14px;padding:14px;font-weight:650}
+.notification-item{padding:15px;background:linear-gradient(145deg,#fff,#fbf8ff)}.notification-item .nicon{background:linear-gradient(135deg,#eee8ff,#ffe7f5);border-radius:15px}
+.nbtn{border:0;background:#eeeaff;color:#6036c6;font-weight:800}.nbtn.accept{background:linear-gradient(120deg,#12b878,#31d89b);color:#fff}.nbtn.reject{background:linear-gradient(120deg,#ef3d65,#ff758d);color:#fff}
+.profile-avatar{width:78px;height:78px;border-radius:25px;margin:8px auto 18px;display:grid;place-items:center;font-size:37px;background:linear-gradient(135deg,#e7ddff,#ffd9ef);box-shadow:0 8px 20px #7044df20}
+.nav{width:min(520px,100%);background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-top:1px solid #e5e0ff;box-shadow:0 -9px 30px #16104418;padding:10px 5px max(13px,env(safe-area-inset-bottom));}
+.nav button{font-size:10px;flex:1;min-width:0;gap:4px;color:#8783a5;padding:3px 0}.nav b{font-size:21px}.nav .active{color:#663be0}.nav .active b{filter:drop-shadow(0 3px 5px #754be744)}
+.setup-card{border:1px solid #d8cdfd;background:linear-gradient(140deg,#fff,#f4efff)}
+.field input,.field select{border:1px solid #ded8fa;border-radius:13px;padding:13px}
+.toast{background:#17133f;border:1px solid #ffffff20;box-shadow:0 10px 30px #08072e44}
+.footnote{padding:0 8px}
+@media(min-width:520px){body{padding:18px 0}.app{border-radius:30px}.top{border-radius:0 0 25px 25px}.nav{bottom:18px;border-radius:0 0 28px 28px}}
+@media(max-width:360px){.app{padding-left:12px;padding-right:12px}.top{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}.hero h1{font-size:26px}.top .pill{padding:8px;font-size:10px}}
+
 </style><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
@@ -160,7 +193,17 @@ const seed=[['Nathu','01-12'],['Hugo','01-30'],['Alan','02-01'],['Alicia','02-04
 let birthdays;try{birthdays=JSON.parse(localStorage.getItem('cumpleHoyBirthdays'))||seed.map(([name,md])=>({name,md}));}catch(e){birthdays=seed.map(([name,md])=>({name,md}));}
 let score=0;let toastTimer;function show(s){const e=document.getElementById('toast');e.textContent=s;e.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>e.style.display='none',3200)}function save(){try{localStorage.setItem('cumpleHoyBirthdays',JSON.stringify(birthdays))}catch(e){}}
 function go(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='calendario')renderBirthdays();if(id==='juegos')renderGames();if(id==='inicio')renderHome();if(id==='perfil')renderProfile();window.scrollTo(0,0)}
-function respondInvite(message){show(message);const el=document.getElementById('demoInvite');if(el)el.querySelector('p').textContent=message+' (demostración local)';}
+function respondInvite(message){
+  show(message);
+  const el=document.getElementById('demoInvite');
+  if(el){
+    const p=el.querySelector('p');
+    if(p)p.textContent=message+' Esta respuesta solo se guarda visualmente en este dispositivo; todavía no se envía a otro jugador.';
+    el.querySelectorAll('button').forEach(b=>{b.disabled=true;b.style.opacity='.55';b.style.cursor='default'});
+    const h=el.querySelector('strong');if(h)h.textContent='Invitación respondida';
+  }
+  try{localStorage.setItem('cumpleHoyDemoInviteResponse',message)}catch(e){}
+}
 function renderProfile(){const n=localStorage.getItem('cumpleHoyProfileName')||'';const input=document.getElementById('profileName');if(input&&input.value!==n)input.value=n;const bc=document.getElementById('profileBirthdayCount');if(bc)bc.textContent='Cumpleaños guardados: '+birthdays.length;const ps=document.getElementById('profileScore');if(ps)ps.textContent='Puntaje local: '+score;}
 function saveProfileName(){const input=document.getElementById('profileName');const n=(input?.value||'').trim();if(!n){show('Escribí tu nombre primero.');return;}localStorage.setItem('cumpleHoyProfileName',n);const st=document.getElementById('profileStatus');if(st)st.textContent='Nombre guardado en este dispositivo: '+n+'. Para compartirlo con otros jugadores hay que sincronizar perfiles con Firebase.';show('Nombre guardado.');}
 const monthNames=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];function dateFor(md,year){let [m,d]=md.split('-').map(Number);return new Date(year,m-1,d,12)}function nextDate(md){let now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate(),12);let d=dateFor(md,now.getFullYear());if(d<today)d=dateFor(md,now.getFullYear()+1);return d}function fmt(d){return d.getDate()+' de '+monthNames[d.getMonth()]}function daysUntil(d){let n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate(),12);return Math.round((d-t)/86400000)}function sorted(){return birthdays.slice().sort((a,b)=>nextDate(a.md)-nextDate(b.md)||a.name.localeCompare(b.name,'es'))}
