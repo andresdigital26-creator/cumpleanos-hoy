@@ -1,29 +1,11 @@
-CUMPLEAÑOS HOY — MAQUETA INSTALABLE
+CUMPLEAÑOS HOY — INVITACIONES REALES DENTRO DE LA APP
 
-Archivos: subí TODOS los archivos de esta carpeta a un alojamiento web HTTPS. La página principal es index.html.
+1) Hacé una copia de seguridad del repositorio actual.
+2) Reemplazá index.html y conservá/subí manifest.webmanifest, sw.js, icon-192.png e icon-512.png.
+3) En Firebase Authentication habilitá el método Anónimo.
+4) En Firestore > Rules reemplazá por el archivo firestore.rules de este ZIP y pulsá Publicar.
+5) Abrí la app en ambos celulares. En cada uno, entrá a Perfil, guardá un nombre; luego en Notificaciones copiá el código de jugador. Compartí esos códigos una sola vez entre ustedes.
+6) En el primer celular: Jugar > Invitar a jugar, elegí juego/dificultad e ingresá el código del otro jugador.
+7) Con la app abierta en el segundo celular, la invitación debe aparecer en Notificaciones y responderse desde allí.
 
-Instalación: en Android, abrí el enlace en Chrome y usá Instalar aplicación o Agregar a pantalla principal. En iPhone, abrí el enlace en Safari, tocá Compartir y luego Agregar a pantalla de inicio.
-
-Notificaciones: el botón solicita permiso y permite mostrar una notificación de prueba en este dispositivo. IMPORTANTE: esta maqueta todavía NO tiene servidor de notificaciones push ni base de datos compartida. Por eso aún no puede enviar automáticamente invitaciones grupales a todos los integrantes con la aplicación cerrada. Para eso hace falta implementar y configurar un servicio push/backend, además de probarlo en Android y iPhone.
-
-La maqueta no envía mensajes de WhatsApp sin confirmación del usuario.
-
-
-ACTUALIZACIÓN DE ESTA ENTREGA
-- Se reemplazaron los iconos de la aplicación por la versión visual nueva.
-- Los nombres icon-192.png e icon-512.png coinciden con manifest.webmanifest.
-- Esta entrega NO incorpora todavía backend compartido, invitaciones sincronizadas ni notificaciones push automáticas con la aplicación cerrada.
-
-
-CONFIGURAR INVITACIONES GRUPALES CON FIREBASE
-1. En Firebase Console > Authentication > Método de acceso, habilitar Anónimo.
-2. En Cloud Firestore > Reglas, reemplazar el contenido por el archivo firestore.rules y pulsar Publicar.
-3. Subir TODOS los archivos de este ZIP al repositorio de GitHub, reemplazando los archivos antiguos.
-4. Abrir la aplicación desde el sitio HTTPS publicado. Al crear una partida, la aplicación guarda el juego en Firestore y comparte un enlace con ?partida=CODIGO.
-5. El organizador debe conservar abierta la partida en la aplicación para ver las respuestas en vivo. Los invitados abren el enlace, escriben su nombre y eligen una respuesta.
-
-IMPORTANTE:
-- Las reglas permiten leer una partida solo por su código y a usuarios con sesión anónima; no permiten listar todas las partidas.
-- El acceso anónimo no verifica la identidad real de una persona; los nombres son los que cada invitado escribe.
-- Esto registra respuestas en la base de datos, pero NO envía notificaciones push cuando la app está cerrada. Para eso hace falta configurar Firebase Cloud Messaging y un backend confiable.
-- No publiques claves privadas de servidor. La configuración web de Firebase incluida en index.html está destinada a la aplicación cliente.
+LIMITACIONES: las invitaciones se sincronizan en la app mientras el destinatario esté conectado y tenga la app abierta. Las notificaciones push con la app cerrada requieren configurar FCM y un backend confiable. Los perfiles anónimos dependen del navegador/dispositivo. La foto todavía no se sincroniza entre celulares.

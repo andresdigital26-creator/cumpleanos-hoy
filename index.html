@@ -79,6 +79,26 @@ body{background:radial-gradient(ellipse at 15% 0%,#4b31a7 0%,transparent 34%),li
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+<style>
+/* Perfil con foto y efectos de juego */
+.profile-avatar{overflow:hidden;position:relative;transition:transform .25s,box-shadow .25s}
+.profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.photo-actions label{display:inline-block;cursor:pointer}
+.photo-actions input{display:none}
+.gamecard{transition:transform .22s,box-shadow .22s;position:relative;overflow:hidden}
+.gamecard.game-pop{animation:gamePop .42s cubic-bezier(.2,.8,.2,1)}
+.option{transition:transform .15s,background .15s,border-color .15s}
+.option:active{transform:scale(.98)}
+.option.correct-answer{background:#d9ffeb!important;border-color:#16b979!important;animation:answerGlow .55s ease}
+.option.wrong-answer{background:#ffe0e5!important;border-color:#ef4354!important;animation:shake .35s ease}
+.game-fx{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
+.game-fx span{position:absolute;top:-20px;font-size:24px;animation:fallFx 1.3s ease-in forwards}
+@keyframes gamePop{0%{transform:scale(.98);box-shadow:0 0 0 rgba(103,50,184,0)}60%{transform:scale(1.015);box-shadow:0 12px 35px rgba(103,50,184,.22)}100%{transform:scale(1)}}
+@keyframes answerGlow{0%{transform:scale(1)}45%{transform:scale(1.025)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes fallFx{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
+</style>
 </head><body><main class="app">
 <div class="top"><div class="brand">🎂 CUMPLEAÑOS HOY</div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="pill" id="installBtn" onclick="installApp()" style="display:none">📲 Instalar</button><button class="pill" onclick="inviteApp()">💌 Invitar</button><button class="pill" onclick="go('ajustes')">⚙ Ajustes</button></div></div>
 <section id="inicio" class="page active"><header class="hero"><div class="cake">🎂</div><h1>¡No te olvides<br>de <span>saludar!</span></h1><p>Los cumpleaños que importan, reunidos en un solo lugar. 💜</p></header><div class="notice"><div class="emoji">🔔</div><div><strong>Hoy hay cumpleaños, no te olvides de saludar</strong><small>Sonido y vibración configurables</small></div></div>
@@ -96,10 +116,10 @@ body{background:radial-gradient(ellipse at 15% 0%,#4b31a7 0%,transparent 34%),li
 <section id="ajustes" class="page"><header class="hero"><h1>Ajustes de <span>alertas</span></h1><p>Probá el sonido y la vibración desde tu celular.</p></header><div class="card"><h3>🔔 Aviso de cumpleaños</h3><div class="notice"><div class="emoji">🎂</div><div><strong>Hoy hay cumpleaños, no te olvides de saludar</strong><small>Sonido breve y vibración cuando el dispositivo lo permita</small></div></div><label class="checkrow"><input type="checkbox" id="soundOn" checked> Activar sonido</label><label class="checkrow"><input type="checkbox" id="vibrateOn" checked> Activar vibración (si es compatible)</label><label class="field">Duración del sonido<select id="duration"><option value="2">2 segundos</option><option value="3" selected>3 segundos</option><option value="5">5 segundos</option></select></label><label class="field">Volumen de prueba <span id="volLabel">60%</span><input id="volume" type="range" min="10" max="100" value="60" oninput="document.getElementById('volLabel').textContent=this.value+'%'"></label><button class="btn primary full" onclick="testAlert()">▶ Probar sonido y vibración</button><p id="alertStatus" class="small muted">Tocá el botón para probar. El teléfono puede requerir permiso o no admitir vibración desde el navegador.</p></div><div class="card"><h3>📲 Instalación y permisos</h3><p class="small muted">Instalá la aplicación y autorizá las notificaciones de este dispositivo.</p><button class="btn primary full" onclick="installApp()">Instalar aplicación</button><button class="btn secondary full" onclick="enableNotifications()">Activar notificaciones</button><p class="small muted" id="settingsNotificationStatus">El permiso se solicita en este dispositivo.</p></div><div class="card"><h3>📳 Sobre las notificaciones</h3><p class="small muted">Esta prueba reproduce un tono mientras la página está abierta. Para avisar automáticamente el día del cumpleaños, incluso con la aplicación cerrada, necesitaremos una versión instalada y permisos de notificación.</p></div></section>
 <section id="notificaciones" class="page"><header class="hero"><h1>Mis <span>notificaciones</span> 🔔</h1><p>Cumpleaños, invitaciones y avisos importantes en un solo lugar.</p></header>
 <div class="notification-item"><div class="nicon">🎂</div><div><strong>¡Hoy es el cumpleaños de Martín!</strong><p>No te olvides de saludarlo. Podés enviarle un mensaje de cumpleaños.</p><button class="nbtn" onclick="share()">💌 Enviar saludo</button></div></div>
-<div class="notification-item" id="demoInvite"><div class="nicon">🎮</div><div><strong>Ana te invita a jugar</strong><p>Ejemplo visual: probá las respuestas. Las invitaciones reales entre celulares se conectarán en la siguiente etapa.</p><div class="nactions"><button class="nbtn accept" onclick="respondInvite('Aceptaste la invitación de demostración. Para entrar a una partida real hay que conectar la invitación con Firebase.')">Aceptar</button><button class="nbtn reject" onclick="respondInvite('Rechazaste la invitación de demostración.')">Rechazar</button><button class="nbtn" onclick="respondInvite('Marcaste la invitación para más tarde.')">Más tarde</button><button class="nbtn" onclick="respondInvite('Marcaste que estás ocupado/a.')">Estoy ocupado/a</button></div></div></div>
+<div class="card" id="friendCodeCard"><h3>👥 Tu código de jugador</h3><p class="small muted">Compartí este código una sola vez con tus amigos para que puedan invitarte desde la app.</p><div id="myFriendCode" style="font-size:24px;font-weight:900;letter-spacing:3px;color:var(--purple)">Preparando…</div><button class="btn secondary" onclick="copyMyFriendCode()">Copiar mi código</button><p class="small muted" id="friendCodeStatus">Conectando con Firebase…</p></div><div id="realInvitations"><div class="card"><p class="muted">Cargando invitaciones reales…</p></div></div>
 <div class="card"><h3>📲 Avisos en el teléfono</h3><p class="small muted">Activá los permisos desde Ajustes. Las notificaciones automáticas cuando la app está cerrada requieren terminar la configuración del servicio de envío.</p><button class="btn primary full" onclick="go('ajustes')">Configurar notificaciones</button></div>
-<p class="footnote">Las tarjetas anteriores son ejemplos visuales. Todavía no representan invitaciones recibidas desde otros celulares.</p></section>
-<section id="perfil" class="page"><header class="hero"><h1>Mi <span>perfil</span> 👤</h1><p>Personalizá cómo aparecés en Cumpleaños Hoy.</p></header><div class="card" style="text-align:center"><div class="profile-avatar">👤</div><label class="field" style="text-align:left">Nombre que verán los demás<input id="profileName" maxlength="40" placeholder="Tu nombre"></label><button class="btn primary full" onclick="saveProfileName()">Guardar nombre</button><p class="small muted" id="profileStatus">El nombre se guarda en este dispositivo en esta versión.</p></div><div class="card"><h3>🏆 Mi actividad</h3><p id="profileBirthdayCount">Cumpleaños guardados: 0</p><p id="profileScore">Puntaje local: 0</p><button class="btn secondary full" onclick="go('juegos')">Ir a jugar</button></div><div class="card"><h3>⚙ Preferencias</h3><button class="btn secondary full" onclick="go('ajustes')">Sonidos, vibración y permisos</button></div></section>
+<p class="footnote">Las invitaciones de esta lista se consultan desde Firebase. Para avisos con la app cerrada todavía falta configurar el envío push.</p></section>
+<section id="perfil" class="page"><header class="hero"><h1>Mi <span>perfil</span> 👤</h1><p>Personalizá cómo aparecés en Cumpleaños Hoy.</p></header><div class="card" style="text-align:center"><div class="profile-avatar" id="profileAvatar">👤</div><div class="photo-actions"><label class="btn secondary">📷 Elegir foto<input id="profilePhotoInput" type="file" accept="image/*" onchange="saveProfilePhoto(event)"></label><button class="btn secondary" type="button" onclick="removeProfilePhoto()">Quitar foto</button></div><label class="field" style="text-align:left">Nombre que verán los demás<input id="profileName" maxlength="40" placeholder="Tu nombre"></label><button class="btn primary full" onclick="saveProfileName()">Guardar nombre</button><p class="small muted" id="profileStatus">Guardá tu nombre para que aparezca en las invitaciones.</p><p class="small muted">Tu código de jugador también aparece en Notificaciones para que tus amigos te agreguen.</p></div><div class="card"><h3>🏆 Mi actividad</h3><p id="profileBirthdayCount">Cumpleaños guardados: 0</p><p id="profileScore">Puntaje local: 0</p><button class="btn secondary full" onclick="go('juegos')">Ir a jugar</button></div><div class="card"><h3>⚙ Preferencias</h3><button class="btn secondary full" onclick="go('ajustes')">Sonidos, vibración y permisos</button></div></section>
 </main><nav class="nav"><button class="active" data-page="inicio" onclick="go('inicio',this)"><b>⌂</b>Inicio</button><button data-page="calendario" onclick="go('calendario',this)"><b>🎂</b>Cumpleaños</button><button data-page="juegos" onclick="go('juegos',this)"><b>🎮</b>Jugar</button><button data-page="notificaciones" onclick="go('notificaciones',this)"><b>🔔</b>Notificaciones</button><button data-page="perfil" onclick="go('perfil',this)"><b>👤</b>Perfil</button></nav><div id="toast" class="toast" role="status"></div>
 <script>
 
@@ -115,11 +135,15 @@ let gameAuthUser = null;
 let gameDb = null;
 let activeGameUnsubscribe = null;
 let activeGameCode = null;
+let myFriendCode = null;
+let invitationsUnsubscribe = null;
 try {
   if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
   gameDb = firebase.firestore();
-  window.gameFirebaseReady = firebase.auth().signInAnonymously().then(cred => {
+  window.gameFirebaseReady = firebase.auth().signInAnonymously().then(async cred => {
     gameAuthUser = cred.user;
+    await ensurePlayerIdentity();
+    startInvitationListener();
     const code = new URLSearchParams(location.search).get('partida');
     if (code) setTimeout(() => openGroupGame(code.toUpperCase()), 700);
     return cred.user;
@@ -129,6 +153,48 @@ try {
     throw err;
   });
 } catch (e) { console.error('Firebase no se pudo iniciar:', e); }
+function randomFriendCode(){return Math.random().toString(36).slice(2,8).toUpperCase().replace(/[^A-Z0-9]/g,'X').padEnd(6,'X');}
+async function ensurePlayerIdentity(){
+ if(!gameDb||!gameAuthUser)return;
+ const userRef=gameDb.collection('usuarios').doc(gameAuthUser.uid);
+ const snap=await userRef.get();
+ let data=snap.exists?snap.data():{};
+ if(!data.friendCode){
+   let code='';
+   for(let i=0;i<8;i++){
+     const candidate=randomFriendCode();
+     const ref=gameDb.collection('codigosJugador').doc(candidate);
+     const found=await ref.get();
+     if(!found.exists){code=candidate;break;}
+   }
+   if(!code)throw new Error('No se pudo crear tu código de jugador');
+   data={...data,friendCode:code,name:localStorage.getItem('cumpleHoyProfileName')||'Jugador'};
+   await userRef.set({uid:gameAuthUser.uid,friendCode:code,name:data.name,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});
+   await gameDb.collection('codigosJugador').doc(code).set({uid:gameAuthUser.uid,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+ }
+ myFriendCode=data.friendCode;
+ const codeEl=document.getElementById('myFriendCode');if(codeEl)codeEl.textContent=myFriendCode;
+ const status=document.getElementById('friendCodeStatus');if(status)status.textContent='Tu código está listo. Tus amigos pueden usarlo para enviarte invitaciones.';
+}
+async function copyMyFriendCode(){if(!myFriendCode){show('Esperá a que se conecte Firebase.');return;}try{await navigator.clipboard.writeText(myFriendCode);show('Código copiado: '+myFriendCode);}catch(e){show('Tu código de jugador es '+myFriendCode);}}
+function startInvitationListener(){
+ if(!gameDb||!gameAuthUser)return;
+ if(invitationsUnsubscribe)invitationsUnsubscribe();
+ invitationsUnsubscribe=gameDb.collection('invitaciones').where('recipientUid','==',gameAuthUser.uid).onSnapshot(snap=>{
+   renderRealInvitations(snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0)));
+ },err=>{console.error('Invitaciones:',err);const el=document.getElementById('realInvitations');if(el)el.innerHTML='<div class="card"><strong>No se pudieron cargar las invitaciones.</strong><p class="small muted">Revisá que hayas publicado las nuevas reglas de Firestore.</p></div>';});
+}
+function renderRealInvitations(items){
+ const el=document.getElementById('realInvitations');if(!el)return;
+ const pending=items.filter(x=>['pending','later','busy'].includes(x.status));
+ if(!pending.length){el.innerHTML='<div class="card"><h3>🎮 Invitaciones recibidas</h3><p class="muted">No tenés invitaciones pendientes. Cuando un amigo te invite, aparecerá aquí.</p></div>';return;}
+ el.innerHTML='<h3 class="sectionhead">🎮 Invitaciones recibidas</h3>'+pending.map(x=>`<div class="notification-item"><div class="nicon">🎮</div><div><strong>${gameEscape(x.senderName||'Un jugador')} te invita a jugar</strong><p>${gameEscape(x.game||'Juego grupal')} · ${gameEscape(x.level||'')}<br>Horario: ${gameEscape(x.when||'Ahora')}<br><small>Estado: ${gameEscape(x.status==='pending'?'Esperando tu respuesta':x.status==='later'?'Marcada para más tarde':'Indicastes que estás ocupado/a')}</small></p><div class="nactions"><button class="nbtn accept" onclick="answerRealInvite('${x.id}','accepted','${x.gameCode}')">Aceptar</button><button class="nbtn reject" onclick="answerRealInvite('${x.id}','rejected','${x.gameCode}')">Rechazar</button><button class="nbtn" onclick="answerRealInvite('${x.id}','later','${x.gameCode}')">Más tarde</button><button class="nbtn" onclick="answerRealInvite('${x.id}','busy','${x.gameCode}')">Estoy ocupado/a</button></div></div></div>`).join('');
+}
+async function answerRealInvite(id,status,gameCode){
+ try{await window.gameFirebaseReady;await gameDb.collection('invitaciones').doc(id).update({status,respondedAt:firebase.firestore.FieldValue.serverTimestamp()});
+ if(status==='accepted'){show('¡Aceptaste! Abriendo la partida…');await openGroupGame(gameCode);}else if(status==='rejected')show('Invitación rechazada.');else if(status==='later')show('La invitación quedó para más tarde.');else show('Marcaste que estás ocupado/a.');
+ }catch(e){console.error(e);show('No se pudo guardar la respuesta. Revisá las reglas de Firestore.');}
+}
 function gameEscape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function ensureGroupPanel(){
  let panel=document.getElementById('groupGamePanel');
@@ -204,8 +270,10 @@ function respondInvite(message){
   }
   try{localStorage.setItem('cumpleHoyDemoInviteResponse',message)}catch(e){}
 }
-function renderProfile(){const n=localStorage.getItem('cumpleHoyProfileName')||'';const input=document.getElementById('profileName');if(input&&input.value!==n)input.value=n;const bc=document.getElementById('profileBirthdayCount');if(bc)bc.textContent='Cumpleaños guardados: '+birthdays.length;const ps=document.getElementById('profileScore');if(ps)ps.textContent='Puntaje local: '+score;}
-function saveProfileName(){const input=document.getElementById('profileName');const n=(input?.value||'').trim();if(!n){show('Escribí tu nombre primero.');return;}localStorage.setItem('cumpleHoyProfileName',n);const st=document.getElementById('profileStatus');if(st)st.textContent='Nombre guardado en este dispositivo: '+n+'. Para compartirlo con otros jugadores hay que sincronizar perfiles con Firebase.';show('Nombre guardado.');}
+function renderProfile(){const n=localStorage.getItem('cumpleHoyProfileName')||'';const input=document.getElementById('profileName');if(input&&input.value!==n)input.value=n;const avatar=document.getElementById('profileAvatar');const photo=localStorage.getItem('cumpleHoyProfilePhoto');if(avatar)avatar.innerHTML=photo?'<img alt="Foto de perfil" src="'+photo+'">':'👤';const bc=document.getElementById('profileBirthdayCount');if(bc)bc.textContent='Cumpleaños guardados: '+birthdays.length;const ps=document.getElementById('profileScore');if(ps)ps.textContent='Puntaje local: '+score;}
+function saveProfilePhoto(event){const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith('image/')){show('Elegí un archivo de imagen.');return;}if(file.size>3*1024*1024){show('La foto debe pesar menos de 3 MB.');event.target.value='';return;}const reader=new FileReader();reader.onload=()=>{try{localStorage.setItem('cumpleHoyProfilePhoto',reader.result);renderProfile();const st=document.getElementById('profileStatus');if(st)st.textContent='Foto guardada en este dispositivo. Para compartirla con otros jugadores habrá que sincronizarla con Firebase.';show('¡Foto de perfil guardada!');}catch(e){show('No se pudo guardar la foto. Probá con una imagen más pequeña.');}};reader.readAsDataURL(file);}
+function removeProfilePhoto(){localStorage.removeItem('cumpleHoyProfilePhoto');renderProfile();show('Foto de perfil quitada.');}
+async function saveProfileName(){const input=document.getElementById('profileName');const n=(input?.value||'').trim();if(!n){show('Escribí tu nombre primero.');return;}localStorage.setItem('cumpleHoyProfileName',n);const st=document.getElementById('profileStatus');try{await window.gameFirebaseReady;await gameDb.collection('usuarios').doc(gameAuthUser.uid).set({uid:gameAuthUser.uid,name:n,friendCode:myFriendCode||null,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});if(st)st.textContent='Nombre guardado y sincronizado con Firebase.';show('Nombre guardado.');}catch(e){console.error(e);if(st)st.textContent='Nombre guardado en este dispositivo, pero no se pudo sincronizar con Firebase. Revisá las reglas.';show('Nombre guardado localmente.');}}
 const monthNames=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];function dateFor(md,year){let [m,d]=md.split('-').map(Number);return new Date(year,m-1,d,12)}function nextDate(md){let now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate(),12);let d=dateFor(md,now.getFullYear());if(d<today)d=dateFor(md,now.getFullYear()+1);return d}function fmt(d){return d.getDate()+' de '+monthNames[d.getMonth()]}function daysUntil(d){let n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate(),12);return Math.round((d-t)/86400000)}function sorted(){return birthdays.slice().sort((a,b)=>nextDate(a.md)-nextDate(b.md)||a.name.localeCompare(b.name,'es'))}
 function renderHome(){let today=new Date(),md=String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0'),todays=birthdays.filter(b=>b.md===md);document.getElementById('todayBox').innerHTML=todays.length?'<div class="today"><strong>🎉 ¡Hoy celebramos!</strong>'+todays.map(b=>'<div>'+esc(b.name)+'</div>').join('')+'</div>':'';let upcoming=sorted().slice(0,6);document.getElementById('countLabel').textContent=birthdays.length+' personas';document.getElementById('list').innerHTML=upcoming.map(b=>{let d=nextDate(b.md),n=daysUntil(d);return '<article class="birthday"><div class="avatar" style="background:#f0eaff;color:#7650d8">🎂</div><div class="person"><strong>'+esc(b.name)+'</strong><small>'+fmt(d)+'</small></div><div class="days">'+(n===0?'¡Hoy!':n===1?'Mañana':'En '+n+' días')+'</div></article>'}).join('')||'<p class="muted">Todavía no hay cumpleaños cargados.</p>'}
 function renderBirthdays(){let q=(document.getElementById('searchName')?.value||'').toLocaleLowerCase('es');document.getElementById('allBirthdays').innerHTML=sorted().filter(b=>b.name.toLocaleLowerCase('es').includes(q)).map(b=>'<article class="birthday"><div class="avatar" style="background:#f0eaff;color:#7650d8">🎂</div><div class="person"><strong>'+esc(b.name)+'</strong><small>'+fmt(dateFor(b.md,2000))+'</small></div><button class="pill" onclick="removeBirthday('+JSON.stringify(b.name).replace(/'/g,"\\'")+','+JSON.stringify(b.md)+')" aria-label="Eliminar cumpleaños">Quitar</button></article>').join('')}
@@ -224,7 +292,9 @@ let gameProgress={};function renderGames(){document.getElementById('gamesList').
 function levelOptions(selected){return [['facil','Fácil'],['intermedio','Intermedio'],['dificil','Difícil']].map(([v,label])=>'<option value="'+v+'" '+(selected===v?'selected':'')+'>'+label+'</option>').join('')}
 function changeLevel(i,level){gameProgress[i]={q:0,correct:0,done:false,level};renderGames();show('Nivel cambiado a '+({facil:'fácil',intermedio:'intermedio',dificil:'difícil'}[level])+'. ¡A jugar!')}
 function startGame(i){let level=(gameProgress[i]||{}).level||'facil';gameProgress[i]={q:0,correct:0,done:false,level};renderGames()}
-function answer(gi,ai){let p=gameProgress[gi]||{q:0,correct:0,done:false,level:'facil'},g=games[gi],qs=g.qs[p.level||'facil'],correct=qs[p.q][2]===ai;if(correct){p.correct++;score++;show('¡Muy bien! ¡Respuesta correcta!')}else show('¡A seguir aprendiendo!');p.q++;if(p.q>=qs.length)p.done=true;gameProgress[gi]=p;renderGames();document.getElementById('scoreLine').textContent=score+' respuestas correctas en esta sesión.'}
+function playGameSound(kind){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;const ctx=new AC();if(ctx.state==='suspended')ctx.resume();const now=ctx.currentTime;const notes=kind==='correct'?[660,880,1100]:kind==='wrong'?[260,190]:kind==='finish'?[523,659,784,1046]:[440,660];notes.forEach((freq,i)=>{const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type=kind==='wrong'?'triangle':'sine';osc.frequency.setValueAtTime(freq,now+i*.11);gain.gain.setValueAtTime(.0001,now+i*.11);gain.gain.exponentialRampToValueAtTime(.12,now+i*.11+.025);gain.gain.exponentialRampToValueAtTime(.0001,now+i*.11+.19);osc.connect(gain);gain.connect(ctx.destination);osc.start(now+i*.11);osc.stop(now+i*.11+.21)});setTimeout(()=>ctx.close(),1000);}catch(e){console.debug('Audio no disponible',e)}}
+function gameCelebration(){let fx=document.createElement('div');fx.className='game-fx';fx.setAttribute('aria-hidden','true');const symbols=['✨','🎉','⭐','💜','🎊'];for(let i=0;i<22;i++){let sp=document.createElement('span');sp.textContent=symbols[i%symbols.length];sp.style.left=(Math.random()*100)+'%';sp.style.animationDelay=(Math.random()*.35)+'s';fx.appendChild(sp)}document.body.appendChild(fx);setTimeout(()=>fx.remove(),1800)}
+function answer(gi,ai){let p=gameProgress[gi]||{q:0,correct:0,done:false,level:'facil'},g=games[gi],qs=g.qs[p.level||'facil'];if(p.done)return;const current=qs[p.q];const correct=current[2]===ai;const card=[...document.querySelectorAll('.gamecard')].find(el=>el.querySelector('h3')&&el.querySelector('h3').textContent===g.title);if(card){card.classList.remove('game-pop');void card.offsetWidth;card.classList.add('game-pop');const buttons=card.querySelectorAll('.option');if(buttons[ai])buttons[ai].classList.add(correct?'correct-answer':'wrong-answer');}if(correct){p.correct++;score++;playGameSound('correct');gameCelebration();show('¡Excelente! ¡Respuesta correcta! 🎉')}else{playGameSound('wrong');show('¡Casi! Seguí intentando 💪')}p.q++;if(p.q>=qs.length){p.done=true;playGameSound('finish');show('¡Nivel terminado! Puntaje: '+p.correct+' de '+qs.length+' 🏆')}gameProgress[gi]=p;setTimeout(()=>{renderGames();document.getElementById('scoreLine').textContent=score+' respuestas correctas en esta sesión.'},180)}
 function resetScore(){score=0;gameProgress={};renderGames();show('Puntaje reiniciado.')}
 // Fecha y hora en vivo
 const dateFmt = new Intl.DateTimeFormat('es-AR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
@@ -264,25 +334,27 @@ if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventList
 async function inviteGame(){
  const games=['Trivia bíblica','Verdadero o falso','Completar el versículo','¿Quién soy?','Desafío rápido','Personajes y milagros'];
  const pick=prompt('¿A qué juego querés invitar?\n'+games.map((g,i)=>(i+1)+'. '+g).join('\n')+'\n\nEscribí el número:','1');
- if(pick===null)return;
- const idx=Number(pick)-1;
+ if(pick===null)return;const idx=Number(pick)-1;
  if(!Number.isInteger(idx)||idx<0||idx>=games.length){show('Elegí un número del 1 al 6.');return;}
- const lev=prompt('Dificultad:\n1. Fácil\n2. Intermedio\n3. Difícil','1');
- if(lev===null)return;
- const levels={'1':'Fácil','2':'Intermedio','3':'Difícil'};
- if(!levels[lev]){show('Elegí una dificultad del 1 al 3.');return;}
- const when=prompt('¿Qué día y hora? (por ejemplo: hoy 20:30 o sábado 18:00)','Hoy 20:30');
- if(when===null)return;
+ const lev=prompt('Dificultad:\n1. Fácil\n2. Intermedio\n3. Difícil','1');if(lev===null)return;
+ const levels={'1':'Fácil','2':'Intermedio','3':'Difícil'};if(!levels[lev]){show('Elegí una dificultad del 1 al 3.');return;}
+ const recipientCode=prompt('Escribí el código de jugador de tu amigo (lo encontrás en su sección Notificaciones).','');if(recipientCode===null)return;
+ const cleanCode=recipientCode.trim().toUpperCase();if(!/^[A-Z0-9]{6}$/.test(cleanCode)){show('El código debe tener 6 letras o números.');return;}
+ const when=prompt('¿Qué día y hora? (por ejemplo: hoy 20:30 o sábado 18:00)','Ahora');if(when===null)return;
  try{
    await window.gameFirebaseReady;
+   if(!myFriendCode)await ensurePlayerIdentity();
    const code='J'+Math.random().toString(36).slice(2,9).toUpperCase();
-   const game={code,game:games[idx],level:levels[lev],when:when.trim().slice(0,100),ownerUid:gameAuthUser.uid,createdAt:firebase.firestore.FieldValue.serverTimestamp()};
+   const targetSnap=await gameDb.collection('codigosJugador').doc(cleanCode).get();
+   if(!targetSnap.exists){show('No encontramos ese código. Pedile a tu amigo que abra Notificaciones y te comparta su código.');return;}
+   const target=targetSnap.data();if(target.uid===gameAuthUser.uid){show('No podés invitarte a vos mismo.');return;}
+   const ownSnap=await gameDb.collection('usuarios').doc(gameAuthUser.uid).get();const own=ownSnap.exists?ownSnap.data():{};
+   const game={code,game:games[idx],level:levels[lev],when:when.trim().slice(0,100),ownerUid:gameAuthUser.uid,ownerName:own.name||localStorage.getItem('cumpleHoyProfileName')||'Jugador',createdAt:firebase.firestore.FieldValue.serverTimestamp()};
    await gameDb.collection('partidas').doc(code).set(game);
-   activeGameCode=code;
-   const url=new URL(location.href);url.searchParams.set('partida',code);
-   await watchGroupGame(code,game,true);
-   await copyGroupInvite();
- }catch(e){console.error('Crear partida:',e);show('No se pudo guardar la partida. Falta configurar/publicar las reglas seguras de Firestore.');}
+   await gameDb.collection('invitaciones').add({gameCode:code,game:game.game,level:game.level,when:game.when,senderUid:gameAuthUser.uid,senderName:game.ownerName,recipientUid:target.uid,recipientCode:cleanCode,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+   activeGameCode=code;await watchGroupGame(code,game,true);show('¡Invitación enviada dentro de Cumpleaños Hoy! El amigo la verá en Notificaciones cuando tenga la app abierta.');
+   const panel=ensureGroupPanel();panel.scrollIntoView({behavior:'smooth',block:'center'});
+ }catch(e){console.error('Crear invitación:',e);show('No se pudo enviar. Publicá las nuevas reglas de firestore.rules y verificá Firebase.');}
 }
 
 function shareDailyVerse(){
