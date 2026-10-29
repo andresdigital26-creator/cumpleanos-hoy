@@ -1,0 +1,437 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#102e69"><meta name="description" content="Cumpleaños, clima, versículo diario y juegos bíblicos."><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icon-192.png"><title>Cumpleaños Hoy</title>
+<style>
+:root{--bg:#061c49;--card:#fff;--ink:#282044;--muted:#71677f;--purple:#6732b8;--pink:#e84687;--gold:#df941c;--teal:#087f83;--line:#e1d4f0;--shadow:0 9px 24px rgba(20,20,70,.13)}*{box-sizing:border-box}body{margin:0;background:linear-gradient(145deg,#061c49,#102e69 45%,#21134d);font-family:system-ui,-apple-system,Segoe UI,Roboto,sans-serif;color:var(--ink)}.app{max-width:490px;margin:0 auto;min-height:100vh;background:#ffffff;padding:18px 16px 100px;box-shadow:0 0 45px #33245a0b}.top{display:flex;justify-content:space-between;align-items:center;gap:8px}.brand{font-size:12px;font-weight:800;letter-spacing:1.6px;color:var(--purple)}button,.pill{cursor:pointer}.pill{border:0;background:#f0eaff;color:var(--purple);padding:10px 12px;border-radius:20px;font-weight:700}.hero{padding:22px 2px 16px}.hero h1{font-size:34px;letter-spacing:-1.2px;margin:0 0 7px}.hero h1 span{color:var(--purple)}.hero p{color:var(--muted);margin:0;line-height:1.5}.cake{font-size:38px;margin-bottom:8px}.home-profile-row{display:flex;align-items:center;gap:14px}.home-profile-avatar{width:76px;height:76px;flex:0 0 76px;border-radius:24px;overflow:hidden;display:grid;place-items:center;background:linear-gradient(135deg,#e7ddff,#ffd9ef);box-shadow:0 8px 20px #7044df20;font-size:34px;border:3px solid #f2eaff}.home-profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}.home-profile-row .hero h1{font-size:clamp(25px,6vw,34px)}.today-person{display:flex;align-items:center;gap:10px;margin-top:10px}.today-person img{width:52px;height:52px;object-fit:cover;border-radius:50%;border:3px solid #fff;box-shadow:0 4px 12px #6732b833}.birthday .avatar img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.avatar{overflow:hidden}.notice{display:flex;gap:12px;align-items:center;background:#f2edff;border-radius:18px;padding:14px;margin:12px 0 23px}.notice .emoji{font-size:25px}.notice strong{display:block}.notice small,.muted{color:var(--muted)}.sectionhead{display:flex;justify-content:space-between;align-items:center;margin:22px 2px 12px}.sectionhead h2{font-size:19px;margin:0}.sectionhead span{font-size:12px;color:var(--purple);font-weight:700}.birthday,.card{padding:13px;background:white;border:1px solid var(--line);border-radius:18px;margin:10px 0;box-shadow:0 5px 18px #30205b05}.birthday{display:flex;align-items:center;gap:12px}.avatar{width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:21px;flex-shrink:0}.person{flex:1;min-width:0}.person strong{display:block;font-size:15px}.person small{color:var(--muted);display:block;margin-top:3px}.days{font-size:11px;color:var(--purple);background:#f4efff;padding:6px 8px;border-radius:12px;white-space:nowrap}.actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:18px}.actions button,.btn{border:0;border-radius:14px;padding:13px 10px;font-weight:750;font-size:13px}.primary,.btn.primary{background:linear-gradient(135deg,#6732b8,#a344d0);color:white}.secondary,.btn.secondary{background:#f0eaff;color:var(--purple)}.btn{margin:4px 3px 4px 0}.full{width:100%}.footnote{font-size:11px;color:#8992a6;text-align:center;line-height:1.5;margin-top:18px}.nav{position:fixed;bottom:0;left:50%;transform:translateX(-50%);width:min(490px,100%);display:flex;justify-content:space-around;background:#fffaf2;border-top:1px solid var(--line);padding:10px 3px max(12px,env(safe-area-inset-bottom));box-shadow:0 -8px 24px #1b17420a}.nav button{border:0;background:none;color:#818ba1;font-size:11px;display:flex;align-items:center;gap:4px;flex-direction:column}.nav .active{color:var(--purple);font-weight:800}.nav b{font-size:19px}.toast{display:none;background:#212039;color:white;padding:12px 15px;border-radius:14px;position:fixed;bottom:84px;left:50%;transform:translateX(-50%);width:max-content;max-width:90%;font-size:13px;z-index:10}.page{display:none}.page.active{display:block}.gamecard{padding:15px;background:white;border:1px solid var(--line);border-radius:18px;margin:10px 0}.gamecard h3{margin:0 0 6px}.gamecard p{margin:5px 0 12px;color:var(--muted);font-size:13px}.option{display:block;width:100%;text-align:left;border:1px solid var(--line);background:#fffaf2;border-radius:12px;padding:12px;margin:7px 0;color:var(--ink)}.option:active,.option:hover{background:#f4efff;border-color:#c9b7ff}.result{font-weight:700;margin-top:10px}.field{display:block;margin:12px 0;font-size:14px}.field input,.field select{display:block;width:100%;padding:11px;margin-top:5px;border:1px solid #ded8ef;border-radius:11px;background:white;color:var(--ink)}.checkrow{display:flex;align-items:center;gap:9px;margin:13px 0}.checkrow input{width:19px;height:19px}.small{font-size:12px}.line{height:1px;background:var(--line);margin:16px 0}.today{background:#ffe3ee;border:1px solid #f5a9ca;border-radius:16px;padding:13px;margin-bottom:12px}.forecast-day{background:#e9f7f3;border:1px solid var(--line);border-radius:12px;padding:9px 5px;text-align:center;font-size:11px}.forecast-day strong{display:block;font-size:12px;margin-bottom:5px}.forecast-day .wx{font-size:22px;margin:5px 0}.forecast-day .temp{font-weight:800;font-size:12px}
+
+.setup-card{background:linear-gradient(135deg,#e9ddff,#ffe2ef 60%,#fff0bd);border:2px solid #b89af5!important;padding:16px!important}.setup-card h3{margin:0 0 7px;color:#55208f}.setup-card p{font-size:13px;line-height:1.5;margin:5px 0 12px}.setup-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px}.setup-actions button{min-height:43px}.setup-later{border:0;background:transparent;color:#6d5a78;text-decoration:underline;padding:10px;width:100%;font-size:12px}
+
+#groupGamePanel{margin:16px 0;padding:16px;border:1px solid #d8c3f2;border-radius:18px;background:#fbf8ff;color:#342047}
+#groupGamePanel h3{margin:0 0 8px;font-size:18px}
+#groupGamePanel .gg-muted{color:#6d5a78;font-size:13px}
+#groupGamePanel .gg-player{display:flex;justify-content:space-between;gap:8px;padding:9px 0;border-bottom:1px solid #eee3f8}
+#groupGamePanel button{border:0;border-radius:12px;padding:10px 12px;background:#6732b8;color:#fff;font-weight:700;margin:5px 4px 0 0}
+
+.notification-item{display:flex;gap:12px;align-items:flex-start;padding:14px;border:1px solid var(--line);border-radius:16px;background:#fff;margin:10px 0;box-shadow:0 5px 18px #30205b05}
+.notification-item .nicon{font-size:25px}.notification-item p{font-size:13px;line-height:1.45;margin:5px 0;color:var(--muted)}
+.nactions{display:flex;gap:7px;flex-wrap:wrap;margin-top:10px}.nbtn{border:0;border-radius:12px;padding:10px 12px;font-weight:800;background:#f0eaff;color:var(--purple)}.nbtn.accept{background:#17b66b;color:white}.nbtn.reject{background:#ef4354;color:white}.profile-avatar{width:82px;height:82px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#6732b8,#b34bd4);color:#fff;font-size:38px;margin:10px auto}
+@media(min-width:520px){.app{margin:18px auto;border-radius:24px;overflow:hidden}}
+
+/* Diseño renovado inspirado en la maqueta aprobada */
+:root{--bg:#071c4d;--ink:#211943;--muted:#756d87;--purple:#6734d4;--pink:#ed4d9b;--gold:#ffb72f;--teal:#08a6b7;--line:#e5ddf6;--shadow:0 12px 28px rgba(49,25,105,.11)}
+body{background:radial-gradient(ellipse at 15% 0%,#263e94 0,#091c4b 48%,#160f3c 100%);color:var(--ink)}
+.app{max-width:520px;padding:16px 16px 112px;background:linear-gradient(180deg,#fff 0%,#fbfaff 100%);box-shadow:0 0 55px #020b2b55}
+.top{position:sticky;top:0;z-index:8;margin:-16px -16px 0;padding:15px 16px 13px;background:rgba(255,255,255,.94);backdrop-filter:blur(14px);border-bottom:1px solid #eee7fb}
+.brand{font-size:12px;letter-spacing:1.4px;color:#5429ac}
+.pill{background:#f0eaff;color:#5c2ab8;border:1px solid #e9ddff;padding:10px 13px;box-shadow:0 3px 9px #6234b50c}
+.hero{padding:24px 3px 16px}.hero h1{font-size:clamp(32px,8vw,40px);line-height:1.08;letter-spacing:-1.5px}.hero p{font-size:15px;line-height:1.55}.cake{font-size:43px;filter:drop-shadow(0 5px 5px #ffca6433)}
+.notice{background:linear-gradient(120deg,#eee8ff,#fce9f5);border:1px solid #e8dafa;border-radius:22px;padding:16px;box-shadow:var(--shadow)}
+.card,.birthday,.gamecard,.notification-item{border:1px solid #e6def5;border-radius:22px;box-shadow:var(--shadow);padding:15px;margin:12px 0;background:#fff}
+.sectionhead{margin:24px 2px 12px}.sectionhead h2{font-size:20px;letter-spacing:-.3px}.sectionhead span{background:#f0eaff;border-radius:20px;padding:6px 9px}
+.birthday{padding:13px;gap:12px}.avatar{width:48px;height:48px;background:linear-gradient(135deg,#f1eaff,#ffe3ef)!important;border:1px solid #e8dafb}.days{background:#f0eaff;color:#5b2bb4;font-size:11px;font-weight:800}
+.actions button,.btn{border-radius:16px;padding:14px 12px;font-size:14px;transition:transform .15s ease,filter .15s ease}.btn:active,.actions button:active,.pill:active,.nbtn:active{transform:scale(.98)}
+.primary,.btn.primary{background:linear-gradient(135deg,#6531d5,#9a45df 65%,#bd48cb);box-shadow:0 7px 16px #6b36c52a;color:#fff}.secondary,.btn.secondary{background:linear-gradient(135deg,#f0eaff,#f9eafa);border:1px solid #e6dafa;color:#5c2ab8}
+.setup-card{border:1px solid #e2c9fb!important;background:linear-gradient(135deg,#f0e9ff,#ffeaf5 72%,#fff3cf)!important}.setup-card h3{font-size:18px}
+#weatherCard{background:linear-gradient(180deg,#fff,#f8f5ff)}#weatherNow{font-size:14px;line-height:1.6} .forecast-day{border-radius:17px;background:linear-gradient(180deg,#e6f8f2,#eaf0ff);padding:11px 5px;border:1px solid #dbe7f6}.forecast-day .wx{font-size:25px}
+#verseCard{border-radius:24px!important;padding:20px!important;background:linear-gradient(135deg,#ffe59c 0%,#ffd8e8 48%,#e8ddff 100%)!important;border:2px solid #e94a91!important}
+#groupGamePanel{border-radius:22px;background:linear-gradient(135deg,#e0fbf3,#e5eaff);border:1px solid #a8e2dd}
+.notification-item{align-items:flex-start;background:linear-gradient(145deg,#fff,#fcf9ff)}.notification-item .nicon{width:45px;height:45px;display:grid;place-items:center;border-radius:15px;background:#f1eaff;flex-shrink:0}.nbtn{border-radius:13px;padding:11px 13px}.nbtn.accept{background:linear-gradient(135deg,#13b66d,#35d68b);color:#fff}.nbtn.reject{background:linear-gradient(135deg,#f04459,#ff6579);color:#fff}
+.gamecard{background:linear-gradient(145deg,#fff,#f9f6ff)}.gamecard h3{font-size:18px}.option{border-radius:15px;padding:14px;border:1px solid #e7def7;background:#fff;font-weight:650}.option:hover,.option:focus{background:#f3edff;border-color:#bba4f2}
+.profile-avatar{box-shadow:0 8px 20px #6732b833;border:4px solid #f2eaff}
+.nav{z-index:20;width:min(520px,100%);background:rgba(255,252,247,.97);backdrop-filter:blur(14px);border-top:1px solid #e8def5;padding:10px 3px max(13px,env(safe-area-inset-bottom));box-shadow:0 -9px 28px #20104712}.nav button{font-size:11px;min-width:0;flex:1;gap:4px;padding:2px 0}.nav b{font-size:21px}.nav .active{color:#6531d5}.toast{z-index:40;box-shadow:0 8px 25px #0002}
+.field input,.field select{border:1px solid #ded4f4;border-radius:14px;padding:13px}.checkrow{padding:8px 0}.footnote{font-size:11px;line-height:1.6;color:#7f7892}
+@media(min-width:520px){.app{margin:18px auto;border-radius:28px;overflow:hidden}.nav{bottom:18px;border-radius:0 0 28px 28px}}
+@media(prefers-reduced-motion:no-preference){.card,.birthday,.gamecard,.notification-item{animation:cardIn .28s ease both}@keyframes cardIn{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}}
+
+
+/* REDISEÑO PRO: visual más cercano a la maqueta aprobada */
+:root{--bg:#080e35;--purple:#7144ed;--pink:#f34c9b;--line:#e6e4ff;--shadow:0 12px 30px rgba(33,25,99,.12)}
+body{background:radial-gradient(ellipse at 15% 0%,#4b31a7 0%,transparent 34%),linear-gradient(155deg,#080e35 0%,#18266b 48%,#31105e 100%);padding-bottom:24px}
+.app{max-width:520px;background:#f8f8ff;border-radius:30px 30px 0 0;padding:18px 16px 115px;min-height:100vh;box-shadow:0 0 60px #070b2e55}
+.top{margin:-18px -16px 0;padding:18px 16px 16px;background:linear-gradient(120deg,#10164b,#3b2084 65%,#6b2fa1);color:#fff;border-radius:0 0 25px 25px;box-shadow:0 10px 28px #12104425}
+.brand{font-size:12px;letter-spacing:1.1px;color:#fff;display:flex;align-items:center;gap:6px}
+.top .pill{background:#ffffff1d;color:#fff;border:1px solid #ffffff32;padding:9px 10px;font-size:11px}
+.hero{position:relative;margin:16px 0 13px;padding:23px 19px;border-radius:25px;background:linear-gradient(135deg,#161c58 0%,#5431b5 58%,#a53eb1 100%);color:white;overflow:hidden;box-shadow:0 13px 28px #3d2a9a28}
+.hero:after{content:'✨';position:absolute;right:13px;top:8px;font-size:43px;opacity:.6;transform:rotate(12deg)}
+.hero h1{font-size:29px;line-height:1.08;letter-spacing:-.8px;margin:4px 0 9px;max-width:85%;color:white}
+.hero h1 span{color:#ffb9e2}.hero p{color:#eee8ff;max-width:90%;font-size:13px}.cake{font-size:29px;margin-bottom:5px}
+.page{animation:pageEnter .22s ease both}.page:not(#inicio) .hero{background:linear-gradient(135deg,#17215e,#5333b7 65%,#a53eae)}
+@keyframes pageEnter{from{opacity:.65;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.card,.birthday,.gamecard,.notification-item{border:1px solid #e8e5ff;border-radius:22px;box-shadow:var(--shadow);background:#fff}
+.notice{background:linear-gradient(110deg,#eee8ff,#ffe8f4);border:1px solid #e5d8ff;border-radius:20px}
+.sectionhead h2{font-size:18px;letter-spacing:-.3px}.sectionhead span{color:#7044df}
+.btn.primary,.primary{background:linear-gradient(115deg,#6940e8,#a33fca);box-shadow:0 6px 14px #7044df2b}.btn.secondary,.secondary{background:#eeeaff;color:#6236cb}
+.actions{gap:9px}.actions button,.btn{border-radius:15px}
+.birthday{padding:14px}.avatar{background:linear-gradient(135deg,#f0eaff,#ffe7f2)}
+.gamecard{padding:17px}.gamecard h3{font-size:17px}.option{background:#f8f6ff;border:1px solid #e3dcff;border-radius:14px;padding:14px;font-weight:650}
+.notification-item{padding:15px;background:linear-gradient(145deg,#fff,#fbf8ff)}.notification-item .nicon{background:linear-gradient(135deg,#eee8ff,#ffe7f5);border-radius:15px}
+.nbtn{border:0;background:#eeeaff;color:#6036c6;font-weight:800}.nbtn.accept{background:linear-gradient(120deg,#12b878,#31d89b);color:#fff}.nbtn.reject{background:linear-gradient(120deg,#ef3d65,#ff758d);color:#fff}
+.profile-avatar{width:78px;height:78px;border-radius:25px;margin:8px auto 18px;display:grid;place-items:center;font-size:37px;background:linear-gradient(135deg,#e7ddff,#ffd9ef);box-shadow:0 8px 20px #7044df20}
+.nav{width:min(520px,100%);background:rgba(255,255,255,.94);backdrop-filter:blur(18px);border-top:1px solid #e5e0ff;box-shadow:0 -9px 30px #16104418;padding:10px 5px max(13px,env(safe-area-inset-bottom));}
+.nav button{font-size:10px;flex:1;min-width:0;gap:4px;color:#8783a5;padding:3px 0}.nav b{font-size:21px}.nav .active{color:#663be0}.nav .active b{filter:drop-shadow(0 3px 5px #754be744)}
+.setup-card{border:1px solid #d8cdfd;background:linear-gradient(140deg,#fff,#f4efff)}
+.field input,.field select{border:1px solid #ded8fa;border-radius:13px;padding:13px}
+.toast{background:#17133f;border:1px solid #ffffff20;box-shadow:0 10px 30px #08072e44}
+.footnote{padding:0 8px}
+@media(min-width:520px){body{padding:18px 0}.app{border-radius:30px}.top{border-radius:0 0 25px 25px}.nav{bottom:18px;border-radius:0 0 28px 28px}}
+@media(max-width:360px){.app{padding-left:12px;padding-right:12px}.top{margin-left:-12px;margin-right:-12px;padding-left:12px;padding-right:12px}.hero h1{font-size:26px}.top .pill{padding:8px;font-size:10px}}
+
+</style><script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js"></script>
+<style>
+/* Perfil con foto y efectos de juego */
+.profile-avatar{overflow:hidden;position:relative;transition:transform .25s,box-shadow .25s}
+.profile-avatar img{width:100%;height:100%;object-fit:cover;display:block}
+.photo-actions{display:flex;gap:8px;justify-content:center;flex-wrap:wrap;margin:10px 0}
+.photo-actions label{display:inline-block;cursor:pointer}
+.photo-actions input{display:none}
+.gamecard{transition:transform .22s,box-shadow .22s;position:relative;overflow:hidden}
+.gamecard.game-pop{animation:gamePop .42s cubic-bezier(.2,.8,.2,1)}
+.option{transition:transform .15s,background .15s,border-color .15s}
+.option:active{transform:scale(.98)}
+.option.correct-answer{background:#d9ffeb!important;border-color:#16b979!important;animation:answerGlow .55s ease}
+.option.wrong-answer{background:#ffe0e5!important;border-color:#ef4354!important;animation:shake .35s ease}
+.game-fx{position:fixed;inset:0;pointer-events:none;z-index:999;overflow:hidden}
+.game-fx span{position:absolute;top:-20px;font-size:24px;animation:fallFx 1.3s ease-in forwards}
+@keyframes gamePop{0%{transform:scale(.98);box-shadow:0 0 0 rgba(103,50,184,0)}60%{transform:scale(1.015);box-shadow:0 12px 35px rgba(103,50,184,.22)}100%{transform:scale(1)}}
+@keyframes answerGlow{0%{transform:scale(1)}45%{transform:scale(1.025)}100%{transform:scale(1)}}
+@keyframes shake{0%,100%{transform:translateX(0)}25%{transform:translateX(-4px)}75%{transform:translateX(4px)}}
+@keyframes fallFx{to{transform:translateY(110vh) rotate(540deg);opacity:0}}
+</style>
+
+<style>
+#firstRunGate{position:fixed;inset:0;z-index:10000;background:linear-gradient(150deg,#101d55 0%,#38217f 55%,#8b35b6 100%);display:none;align-items:center;justify-content:center;padding:20px;overflow:auto}
+#firstRunGate .gate-panel{width:min(100%,460px);max-height:94vh;overflow:auto;background:#fff;border-radius:28px;padding:24px;box-shadow:0 24px 70px #080a2c66;color:#2d2044}
+#firstRunGate .gate-title{font-size:25px;line-height:1.15;margin:0 0 8px;font-weight:900}
+#firstRunGate .gate-sub{color:#746b83;line-height:1.45;margin:0 0 18px}
+#firstRunGate .gate-step{display:none}#firstRunGate .gate-step.active{display:block}
+#gatePhotoPreview{width:116px;height:116px;border-radius:50%;margin:14px auto;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#eee5ff,#ffe4f4);border:4px solid #e6d7ff;font-size:48px;box-shadow:0 8px 24px #6b45aa22}
+#gatePhotoPreview img{width:100%;height:100%;object-fit:cover}
+#firstRunGate .gate-label{display:block;font-weight:800;margin:14px 0 6px}
+#firstRunGate .gate-input{width:100%;box-sizing:border-box;border:1px solid #ddd1f0;border-radius:14px;padding:14px;font-size:16px;background:#fff;color:#2d2044}
+#firstRunGate .gate-btn{width:100%;border:0;border-radius:15px;padding:14px 16px;font-size:16px;font-weight:850;margin-top:10px;cursor:pointer}
+#firstRunGate .gate-primary{background:linear-gradient(100deg,#6938df,#a23dcc);color:#fff}
+#firstRunGate .gate-secondary{background:#f0eaff;color:#6133ae}
+#firstRunGate .gate-note{font-size:12px;line-height:1.45;color:#82788f;margin:12px 0 0}
+#gateProfileSummary{display:flex;align-items:center;gap:13px;padding:12px;border-radius:16px;background:#f7f2ff;margin:16px 0}
+#gateProfileSummary img{width:58px;height:58px;object-fit:cover;border-radius:50%}
+#gateProfileSummary .summary-avatar{width:58px;height:58px;border-radius:50%;display:grid;place-items:center;background:#eadfff;font-size:28px}
+@media(prefers-reduced-motion:no-preference){#firstRunGate .gate-panel{animation:gateUp .3s ease-out}@keyframes gateUp{from{transform:translateY(12px);opacity:.7}to{transform:translateY(0);opacity:1}}}
+</style>
+<!-- FIRESTORE_SYNC_PATCH -->
+</head><body>
+<div id="firstRunGate" role="dialog" aria-modal="true" aria-labelledby="gateHeading">
+ <div class="gate-panel">
+  <div style="text-align:center;font-size:35px;margin-bottom:8px">🎂</div>
+  <div class="gate-step active" id="gateStepProfile">
+   <h1 class="gate-title" id="gateHeading" style="text-align:center">¡Bienvenido a Cumpleaños Hoy!</h1>
+   <p class="gate-sub" style="text-align:center">Primero personalizá tu perfil para que tus amigos puedan reconocerte.</p>
+   <div id="gatePhotoPreview" aria-label="Vista previa de tu foto">👤</div>
+   <label class="gate-btn gate-secondary" style="display:block;text-align:center;box-sizing:border-box" for="gatePhotoInput">📷 Elegir foto de perfil</label>
+   <input id="gatePhotoInput" type="file" accept="image/*" style="display:none" onchange="handleGatePhoto(event)">
+   <label class="gate-label" for="gateNameInput">Tu nombre</label>
+   <input id="gateNameInput" class="gate-input" maxlength="40" autocomplete="name" placeholder="¿Cómo te llamás?">
+   <button class="gate-btn gate-primary" onclick="saveGateProfile()">Guardar perfil y continuar</button>
+   <p class="gate-note">Tu foto y nombre se sincronizan con Firebase cuando la conexión y las reglas lo permiten.</p>
+   <p id="gateProfileStatus" class="gate-note" aria-live="polite"></p>
+  </div>
+  <div class="gate-step" id="gateStepSetup">
+   <h2 class="gate-title">¡Tu perfil está listo!</h2>
+   <p class="gate-sub">Ahora prepará la aplicación en tu celular.</p>
+   <div id="gateProfileSummary"><div id="gateSummaryAvatar" class="summary-avatar">👤</div><div><strong id="gateSummaryName">Tu nombre</strong><div style="font-size:13px;color:#776b87;margin-top:3px">Tu perfil de jugador</div></div></div>
+   <button class="gate-btn gate-primary" onclick="installApp()">📲 Instalar aplicación</button>
+   <button class="gate-btn gate-secondary" onclick="enableNotifications()">🔔 Activar notificaciones</button>
+   <p id="gateSetupStatus" class="gate-note" aria-live="polite">En Android, si no aparece la ventana de instalación, usá el menú ⋮ del navegador y elegí “Instalar aplicación” o “Agregar a pantalla principal”.</p>
+   <button class="gate-btn gate-secondary" onclick="finishFirstRun()">Entrar a Cumpleaños Hoy</button>
+   <p class="gate-note">Podés completar la instalación y los permisos ahora o volver a hacerlo desde Ajustes.</p>
+  </div>
+ </div>
+</div>
+<main class="app">
+<div class="top"><div class="brand">🎂 CUMPLEAÑOS HOY</div><div style="display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end"><button class="pill" id="installBtn" onclick="installApp()" style="display:none">📲 Instalar</button><button class="pill" onclick="inviteApp()">💌 Invitar</button><button class="pill" onclick="go('ajustes')">⚙ Ajustes</button></div></div>
+<section id="inicio" class="page active"><header class="hero"><div class="home-profile-row"><div id="homeProfileAvatar" class="home-profile-avatar" aria-label="Tu foto de perfil">👤</div><div><h1>¡No te olvides<br>de <span>saludar!</span></h1><p id="homeGreeting">Los cumpleaños que importan, reunidos en un solo lugar. 💜</p></div></div></header><div class="notice"><div class="emoji">🔔</div><div><strong>Hoy hay cumpleaños, no te olvides de saludar</strong><small>Sonido y vibración configurables</small></div></div>
+<div class="card setup-card" id="setupCard"><h3>📲 ¡Instalá cumpleaños hoy!</h3><p>Activá las notificaciones para preparar tu celular y no perderte los cumpleaños ni las invitaciones del grupo.</p><div class="setup-actions"><button class="btn primary" onclick="installApp()">📲 Instalar aplicación</button><button class="btn secondary" onclick="enableNotifications()">🔔 Activar notificaciones</button></div><button class="setup-later" onclick="dismissSetup()">Lo hago más tarde</button><p class="small muted" id="setupStatus">Podés cambiar tus preferencias cuando quieras.</p></div><div class="card" aria-live="polite" style="background:linear-gradient(135deg,#e8e0ff,#fff0f5)"><div style="font-size:12px;color:var(--muted)">FECHA Y HORA</div><div id="dateLine" style="font-size:18px;font-weight:800;margin-top:4px">Cargando fecha…</div><div id="clockLine" style="font-size:27px;font-weight:800;color:var(--purple);font-variant-numeric:tabular-nums">--:--:--</div></div>
+<div class="card" id="weatherCard"><div class="sectionhead" style="margin-top:0"><h2>🌤️ Clima de hoy y próximos días</h2><span id="weatherPlace">Tu ubicación</span></div><div id="weatherNow" class="muted small">Consultando el clima… Si el navegador pregunta, permití la ubicación.</div><div id="forecast" style="display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin-top:12px"></div><button class="btn secondary full" onclick="loadWeather(true)">↻ Actualizar clima</button></div>
+<div class="card" id="verseCard" style="background:linear-gradient(135deg,#ffe39d 0%,#ffd3e5 52%,#e8dcff 100%);border:2px solid #e84687;box-shadow:0 10px 28px rgba(103,50,184,.18);padding:20px"><div style="display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap"><div style="font-size:14px;color:#55208f;font-weight:900;letter-spacing:.7px">📖 VERSÍCULO DEL DÍA</div><button class="pill" onclick="shareDailyVerse()">↗ Compartir versículo</button></div><blockquote id="dailyVerse" style="font-size:19px;font-weight:700;line-height:1.6;margin:13px 0 10px;color:#342047">Cargando versículo…</blockquote><div id="verseRef" style="font-weight:900;font-size:14px;color:#55208f"></div></div>
+<div class="card" style="background:linear-gradient(135deg,#d4f4e9,#dce7ff);border:2px solid #087f83;box-shadow:0 8px 22px rgba(8,127,131,.13)">
+<div style="font-size:17px;font-weight:900;color:#075e62">🎮 ¿Jugamos en grupo?</div>
+<p class="small" style="margin:7px 0 10px">Elegí un juego, el nivel y el horario. Después compartí la invitación por WhatsApp.</p>
+<button class="btn full" onclick="inviteGame()">📣 Invitar a jugar</button>
+</div>
+<div id="todayBox"></div><div class="sectionhead"><h2>Próximos cumpleaños</h2><span id="countLabel"></span></div><div id="list"></div><div class="actions"><button class="primary" onclick="share()">💌 Compartir saludo</button><button class="secondary" onclick="go('ajustes')">🔔 Configurar alertas</button></div><p class="footnote">Versión de prueba. Las alertas automáticas con la app cerrada y la sincronización grupal requieren instalación y configuración adicional.</p></section>
+<section id="calendario" class="page"><header class="hero"><h1>Calendario de <span>cumpleaños</span></h1><p>Las fechas se repiten cada año.</p></header><div class="card"><label class="field">Buscar por nombre<input id="searchName" placeholder="Escribí un nombre…" oninput="renderBirthdays()"></label><div id="allBirthdays"></div></div><div class="card"><h3>➕ Agregar cumpleaños</h3><label class="field">Nombre<input id="newName" maxlength="50" placeholder="Nombre de la persona"></label><label class="field">Fecha de cumpleaños<input id="newDate" type="date"></label><button class="btn primary full" onclick="addBirthday()">Guardar cumpleaños</button><p class="small muted">En esta maqueta, los nuevos datos se guardan en este dispositivo.</p></div></section>
+<section id="juegos" class="page"><header class="hero"><h1>¡A jugar! <span>📖</span></h1><p>Elegí un desafío bíblico. Cada juego tiene preguntas y puntaje de prueba.</p></header><div id="gamesList"></div><div class="card"><h3>🏆 Puntaje de esta sesión</h3><p id="scoreLine">0 respuestas correctas</p><button class="btn secondary" onclick="resetScore()">Reiniciar puntaje</button></div><p class="footnote">Estos juegos funcionan en este dispositivo. Las competencias sincronizadas entre varios celulares se agregarán al conectar un servidor compartido.</p></section>
+<section id="ajustes" class="page"><header class="hero"><h1>Ajustes de <span>alertas</span></h1><p>Probá el sonido y la vibración desde tu celular.</p></header><div class="card"><h3>🔔 Aviso de cumpleaños</h3><div class="notice"><div class="emoji">🎂</div><div><strong>Hoy hay cumpleaños, no te olvides de saludar</strong><small>Sonido breve y vibración cuando el dispositivo lo permita</small></div></div><label class="checkrow"><input type="checkbox" id="soundOn" checked> Activar sonido</label><label class="checkrow"><input type="checkbox" id="vibrateOn" checked> Activar vibración (si es compatible)</label><label class="field">Duración del sonido<select id="duration"><option value="2">2 segundos</option><option value="3" selected>3 segundos</option><option value="5">5 segundos</option></select></label><label class="field">Volumen de prueba <span id="volLabel">60%</span><input id="volume" type="range" min="10" max="100" value="60" oninput="document.getElementById('volLabel').textContent=this.value+'%'"></label><button class="btn primary full" onclick="testAlert()">▶ Probar sonido y vibración</button><p id="alertStatus" class="small muted">Tocá el botón para probar. El teléfono puede requerir permiso o no admitir vibración desde el navegador.</p></div><div class="card"><h3>📲 Instalación y permisos</h3><p class="small muted">Instalá la aplicación y autorizá las notificaciones de este dispositivo.</p><button class="btn primary full" onclick="installApp()">Instalar aplicación</button><button class="btn secondary full" onclick="enableNotifications()">Activar notificaciones</button><p class="small muted" id="settingsNotificationStatus">El permiso se solicita en este dispositivo.</p></div><div class="card"><h3>📳 Sobre las notificaciones</h3><p class="small muted">Esta prueba reproduce un tono mientras la página está abierta. Para avisar automáticamente el día del cumpleaños, incluso con la aplicación cerrada, necesitaremos una versión instalada y permisos de notificación.</p></div></section>
+<section id="notificaciones" class="page"><header class="hero"><h1>Mis <span>notificaciones</span> 🔔</h1><p>Cumpleaños, invitaciones y avisos importantes en un solo lugar.</p></header>
+<div class="notification-item"><div class="nicon">🎂</div><div><strong>¡Hoy es el cumpleaños de Martín!</strong><p>No te olvides de saludarlo. Podés enviarle un mensaje de cumpleaños.</p><button class="nbtn" onclick="share()">💌 Enviar saludo</button></div></div>
+<div class="card" id="friendCodeCard"><h3>👥 Tu código de jugador</h3><p class="small muted">Compartí este código una sola vez con tus amigos para que puedan invitarte desde la app.</p><div id="myFriendCode" style="font-size:24px;font-weight:900;letter-spacing:3px;color:var(--purple)">Preparando…</div><button class="btn secondary" onclick="copyMyFriendCode()">Copiar mi código</button><p class="small muted" id="friendCodeStatus">Conectando con Firebase…</p></div><div id="realInvitations"><div class="card"><p class="muted">Cargando invitaciones reales…</p></div></div>
+<div class="card"><h3>📲 Avisos en el teléfono</h3><p class="small muted">Activá los permisos desde Ajustes. Las notificaciones automáticas cuando la app está cerrada requieren terminar la configuración del servicio de envío.</p><button class="btn primary full" onclick="go('ajustes')">Configurar notificaciones</button></div>
+<p class="footnote">Las invitaciones de esta lista se consultan desde Firebase. Para avisos con la app cerrada todavía falta configurar el envío push.</p></section>
+<section id="perfil" class="page"><header class="hero"><h1>Mi <span>perfil</span> 👤</h1><p>Personalizá cómo aparecés en Cumpleaños Hoy.</p></header><div class="card" style="text-align:center"><div class="profile-avatar" id="profileAvatar">👤</div><div class="photo-actions"><label class="btn secondary">📷 Elegir foto<input id="profilePhotoInput" type="file" accept="image/*" onchange="saveProfilePhoto(event)"></label><button class="btn secondary" type="button" onclick="removeProfilePhoto()">Quitar foto</button></div><label class="field" style="text-align:left">Nombre que verán los demás<input id="profileName" maxlength="40" placeholder="Tu nombre"></label><button class="btn primary full" onclick="saveProfileName()">Guardar nombre</button><p class="small muted" id="profileStatus">Guardá tu nombre para que aparezca en las invitaciones.</p><p class="small muted">Tu código de jugador también aparece en Notificaciones para que tus amigos te agreguen.</p></div><div class="card"><h3>🏆 Mi actividad</h3><p id="profileBirthdayCount">Cumpleaños guardados: 0</p><p id="profileScore">Puntaje local: 0</p><button class="btn secondary full" onclick="go('juegos')">Ir a jugar</button></div><div class="card"><h3>⚙ Preferencias</h3><button class="btn secondary full" onclick="go('ajustes')">Sonidos, vibración y permisos</button></div></section>
+</main><nav class="nav"><button class="active" data-page="inicio" onclick="go('inicio',this)"><b>⌂</b>Inicio</button><button data-page="calendario" onclick="go('calendario',this)"><b>🎂</b>Cumpleaños</button><button data-page="juegos" onclick="go('juegos',this)"><b>🎮</b>Jugar</button><button data-page="notificaciones" onclick="go('notificaciones',this)"><b>🔔</b>Notificaciones</button><button data-page="perfil" onclick="go('perfil',this)"><b>👤</b>Perfil</button></nav><div id="toast" class="toast" role="status"></div>
+<script>
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAH_zMNj_j4EmMoX7TIf9RHhIn3MrpYcm8",
+  authDomain: "cumpleanos-hoy.firebaseapp.com",
+  projectId: "cumpleanos-hoy",
+  storageBucket: "cumpleanos-hoy.firebasestorage.app",
+  messagingSenderId: "718825836373",
+  appId: "1:718825836373:web:db2dbecab3b1f1591ea9dc"
+};
+let gameAuthUser = null;
+let gameDb = null;
+let activeGameUnsubscribe = null;
+let activeGameCode = null;
+let myFriendCode = null;
+let invitationsUnsubscribe = null;
+try {
+  if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+  gameDb = firebase.firestore();
+  window.gameFirebaseReady = firebase.auth().signInAnonymously().then(async cred => {
+    gameAuthUser = cred.user;
+    await ensurePlayerIdentity();
+    startInvitationListener();
+    const code = new URLSearchParams(location.search).get('partida');
+    if (code) setTimeout(() => openGroupGame(code.toUpperCase()), 700);
+    return cred.user;
+  }).catch(err => {
+    console.error('Firebase Auth:', err);
+    show('No se pudo conectar con Firebase. Revisá la configuración y las reglas.');
+    throw err;
+  });
+} catch (e) { console.error('Firebase no se pudo iniciar:', e); }
+function randomFriendCode(){return Math.random().toString(36).slice(2,8).toUpperCase().replace(/[^A-Z0-9]/g,'X').padEnd(6,'X');}
+async function ensurePlayerIdentity(){
+ if(!gameDb||!gameAuthUser)return;
+ const userRef=gameDb.collection('usuarios').doc(gameAuthUser.uid);
+ const snap=await userRef.get();
+ let data=snap.exists?snap.data():{};
+ if(!data.friendCode){
+   let code='';
+   for(let i=0;i<8;i++){
+     const candidate=randomFriendCode();
+     const ref=gameDb.collection('codigosJugador').doc(candidate);
+     const found=await ref.get();
+     if(!found.exists){code=candidate;break;}
+   }
+   if(!code)throw new Error('No se pudo crear tu código de jugador');
+   data={...data,friendCode:code,name:localStorage.getItem('cumpleHoyProfileName')||'Jugador'};
+   await userRef.set({uid:gameAuthUser.uid,friendCode:code,name:data.name,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});
+   await gameDb.collection('codigosJugador').doc(code).set({uid:gameAuthUser.uid,createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+ }
+ myFriendCode=data.friendCode;
+ const codeEl=document.getElementById('myFriendCode');if(codeEl)codeEl.textContent=myFriendCode;
+ const status=document.getElementById('friendCodeStatus');if(status)status.textContent='Tu código está listo. Tus amigos pueden usarlo para enviarte invitaciones.';
+}
+async function copyMyFriendCode(){if(!myFriendCode){show('Esperá a que se conecte Firebase.');return;}try{await navigator.clipboard.writeText(myFriendCode);show('Código copiado: '+myFriendCode);}catch(e){show('Tu código de jugador es '+myFriendCode);}}
+function startInvitationListener(){
+ if(!gameDb||!gameAuthUser)return;
+ if(invitationsUnsubscribe)invitationsUnsubscribe();
+ invitationsUnsubscribe=gameDb.collection('invitaciones').where('recipientUid','==',gameAuthUser.uid).onSnapshot(snap=>{
+   renderRealInvitations(snap.docs.map(d=>({id:d.id,...d.data()})).sort((a,b)=>(b.createdAt?.toMillis?.()||0)-(a.createdAt?.toMillis?.()||0)));
+ },err=>{console.error('Invitaciones:',err);const el=document.getElementById('realInvitations');if(el)el.innerHTML='<div class="card"><strong>No se pudieron cargar las invitaciones.</strong><p class="small muted">Revisá que hayas publicado las nuevas reglas de Firestore.</p></div>';});
+}
+function renderRealInvitations(items){
+ const el=document.getElementById('realInvitations');if(!el)return;
+ const pending=items.filter(x=>['pending','later','busy'].includes(x.status));
+ if(!pending.length){el.innerHTML='<div class="card"><h3>🎮 Invitaciones recibidas</h3><p class="muted">No tenés invitaciones pendientes. Cuando un amigo te invite, aparecerá aquí.</p></div>';return;}
+ el.innerHTML='<h3 class="sectionhead">🎮 Invitaciones recibidas</h3>'+pending.map(x=>`<div class="notification-item"><div class="nicon">🎮</div><div><strong>${gameEscape(x.senderName||'Un jugador')} te invita a jugar</strong><p>${gameEscape(x.game||'Juego grupal')} · ${gameEscape(x.level||'')}<br>Horario: ${gameEscape(x.when||'Ahora')}<br><small>Estado: ${gameEscape(x.status==='pending'?'Esperando tu respuesta':x.status==='later'?'Marcada para más tarde':'Indicastes que estás ocupado/a')}</small></p><div class="nactions"><button class="nbtn accept" onclick="answerRealInvite('${x.id}','accepted','${x.gameCode}')">Aceptar</button><button class="nbtn reject" onclick="answerRealInvite('${x.id}','rejected','${x.gameCode}')">Rechazar</button><button class="nbtn" onclick="answerRealInvite('${x.id}','later','${x.gameCode}')">Más tarde</button><button class="nbtn" onclick="answerRealInvite('${x.id}','busy','${x.gameCode}')">Estoy ocupado/a</button></div></div></div>`).join('');
+}
+async function answerRealInvite(id,status,gameCode){
+ try{await window.gameFirebaseReady;await gameDb.collection('invitaciones').doc(id).update({status,respondedAt:firebase.firestore.FieldValue.serverTimestamp()});
+ if(status==='accepted'){show('¡Aceptaste! Abriendo la partida…');await openGroupGame(gameCode);}else if(status==='rejected')show('Invitación rechazada.');else if(status==='later')show('La invitación quedó para más tarde.');else show('Marcaste que estás ocupado/a.');
+ }catch(e){console.error(e);show('No se pudo guardar la respuesta. Revisá las reglas de Firestore.');}
+}
+function gameEscape(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function ensureGroupPanel(){
+ let panel=document.getElementById('groupGamePanel');
+ if(!panel){panel=document.createElement('section');panel.id='groupGamePanel';panel.innerHTML='<h3>🎮 Partida en grupo</h3><div id="ggContent" class="gg-muted">Preparando partida…</div>';const root=document.querySelector('.app')||document.body;root.appendChild(panel);}
+ return panel;
+}
+function renderGroupPlayers(game, responses, isOwner){
+ const panel=ensureGroupPanel(), content=document.getElementById('ggContent');
+ const statusLabel={'join':'✅ Me sumo','maybe':'🤔 Tal vez','no':'❌ No puedo'};
+ content.innerHTML=`<p><b>${gameEscape(game.game||'Juego bíblico')}</b> · ${gameEscape(game.level||'')}<br>🗓️ ${gameEscape(game.when||'')}</p><p class="gg-muted">Código: ${gameEscape(activeGameCode||'')}</p>`+
+ (isOwner?'<p><b>Respuestas de los jugadores</b></p>':'<p>Tu respuesta quedó registrada. Compartí el enlace con el organizador.</p>')+
+ (responses.length?responses.map(r=>`<div class="gg-player"><span>${gameEscape(r.name)}</span><b>${gameEscape(statusLabel[r.status]||r.status)}</b></div>`).join(''):'<p class="gg-muted">Todavía no hay respuestas.</p>')+
+ (isOwner?'<button type="button" onclick="copyGroupInvite()">Copiar invitación</button>':'')+
+ '<button type="button" onclick="closeGroupGame()">Cerrar</button>';
+ panel.scrollIntoView({behavior:'smooth',block:'nearest'});
+}
+function closeGroupGame(){if(activeGameUnsubscribe){activeGameUnsubscribe();activeGameUnsubscribe=null;}const p=document.getElementById('groupGamePanel');if(p)p.remove();}
+async function copyGroupInvite(){
+ const url=new URL(location.href);url.searchParams.set('partida',activeGameCode);
+ const msg=`🎮 Te invito a jugar en grupo en cumpleaños hoy\nCódigo: ${activeGameCode}\nAbrí este enlace para responder: ${url.toString()}`;
+ if(navigator.share){try{await navigator.share({title:'Invitación a jugar — cumpleaños hoy',text:msg,url:url.toString()});return;}catch(e){}}
+ try{await navigator.clipboard.writeText(msg);show('Invitación copiada. Pegala en WhatsApp.');}catch(e){show(msg);}
+}
+async function watchGroupGame(code, game, isOwner){
+ activeGameCode=code;
+ if(activeGameUnsubscribe){activeGameUnsubscribe();activeGameUnsubscribe=null;}
+ const ref=gameDb.collection('partidas').doc(code);
+ activeGameUnsubscribe=ref.collection('respuestas').onSnapshot(snap=>{
+   const responses=snap.docs.map(d=>d.data()).sort((a,b)=>(a.name||'').localeCompare(b.name||''));
+   renderGroupPlayers(game,responses,isOwner);
+ },err=>{console.error(err);show('No se pudieron cargar las respuestas. Revisá las reglas de Firestore.');});
+}
+async function openGroupGame(code){
+ try{
+   if(!gameDb)throw new Error('Firebase no está iniciado');
+   await window.gameFirebaseReady;
+   const snap=await gameDb.collection('partidas').doc(code).get();
+   if(!snap.exists){show('No encontramos esa partida. Pedile al organizador una invitación nueva.');return;}
+   const game=snap.data();
+   const isOwner=game.ownerUid===gameAuthUser.uid;
+   if(!isOwner){
+     const name=prompt(`🎮 ${game.game}\nNivel: ${game.level}\nCuándo: ${game.when}\n\nEscribí tu nombre para responder:`);
+     if(name===null)return;
+     const cleanName=name.trim().slice(0,50);
+     if(!cleanName){show('Escribí tu nombre para responder.');return;}
+     const answer=prompt('Tu respuesta:\\n1. Me sumo\\n2. Tal vez\\n3. No puedo','1');
+     if(answer===null)return;
+     const statuses={'1':'join','2':'maybe','3':'no'};
+     if(!statuses[answer]){show('Elegí 1, 2 o 3.');return;}
+     await gameDb.collection('partidas').doc(code).collection('respuestas').doc(gameAuthUser.uid).set({
+       uid:gameAuthUser.uid,name:cleanName,status:statuses[answer],updatedAt:firebase.firestore.FieldValue.serverTimestamp()
+     });
+     show('¡Tu respuesta quedó registrada!');
+     // Keep the participant subscribed to the shared response list so all
+     // authorized players see the same live responses.
+     await watchGroupGame(code,game,false);
+     return;
+   }
+   watchGroupGame(code,game,true);
+ }catch(e){console.error('Abrir partida:',e);show('No se pudo abrir la partida. Revisá la conexión y las reglas de Firestore.');}
+}
+
+const seed=[['Nathu','01-12'],['Hugo','01-30'],['Alan','02-01'],['Alicia','02-04'],['Griselda','02-10'],['Miqueas','02-23'],['Omar','02-24'],['Erika','02-27'],['Ludmila','03-03'],['Marcelo','03-15'],['Cinthia','03-17'],['Kiko','03-23'],['Morena','03-25'],['Melanie','04-01'],['Jaqui','04-04'],['Pablo','04-25'],['Iara','04-27'],['Karen','05-04'],['Gustavo','05-23'],['Bianca','05-25'],['Pacho','05-31'],['Abuela','06-01'],['Samira','06-08'],['Juancito','06-13'],['Gaby','06-13'],['Lila','06-29'],['Lisandro','07-06'],['Nicolas','07-06'],['Fabi','07-16'],['Eugenia','09-13'],['Delfi','09-23'],['Bruno','09-24'],['Tere','10-02'],['Luis','10-26'],['Sofia','11-14'],['Ayelen','11-23'],['Mica','11-30'],['Máximo','12-10'],['Silvina','12-28']];
+let birthdays;try{birthdays=JSON.parse(localStorage.getItem('cumpleHoyBirthdays'))||seed.map(([name,md])=>({name,md}));}catch(e){birthdays=seed.map(([name,md])=>({name,md}));}
+let score=0;let toastTimer;function show(s){const e=document.getElementById('toast');e.textContent=s;e.style.display='block';clearTimeout(toastTimer);toastTimer=setTimeout(()=>e.style.display='none',3200)}function save(){try{localStorage.setItem('cumpleHoyBirthdays',JSON.stringify(birthdays))}catch(e){}}
+function go(id,btn){document.querySelectorAll('.page').forEach(p=>p.classList.toggle('active',p.id===id));document.querySelectorAll('.nav button').forEach(b=>b.classList.toggle('active',b.dataset.page===id));if(id==='calendario')renderBirthdays();if(id==='juegos')renderGames();if(id==='inicio')renderHome();if(id==='perfil')renderProfile();window.scrollTo(0,0)}
+function respondInvite(message){
+  show(message);
+  const el=document.getElementById('demoInvite');
+  if(el){
+    const p=el.querySelector('p');
+    if(p)p.textContent=message+' Esta respuesta solo se guarda visualmente en este dispositivo; todavía no se envía a otro jugador.';
+    el.querySelectorAll('button').forEach(b=>{b.disabled=true;b.style.opacity='.55';b.style.cursor='default'});
+    const h=el.querySelector('strong');if(h)h.textContent='Invitación respondida';
+  }
+  try{localStorage.setItem('cumpleHoyDemoInviteResponse',message)}catch(e){}
+}
+function renderProfile(){const n=localStorage.getItem('cumpleHoyProfileName')||'';const input=document.getElementById('profileName');if(input&&input.value!==n)input.value=n;const photo=localStorage.getItem('cumpleHoyProfilePhoto')||'';const avatar=document.getElementById('profileAvatar');if(avatar)avatar.innerHTML=photo?'<img alt="Foto de perfil" src="'+photo+'">':'👤';const homeAvatar=document.getElementById('homeProfileAvatar');if(homeAvatar)homeAvatar.innerHTML=photo?'<img alt="Tu foto de perfil" src="'+photo+'">':'👤';const greeting=document.getElementById('homeGreeting');if(greeting)greeting.textContent=n?'¡Hola, '+n+'! Los cumpleaños que importan, reunidos en un solo lugar. 💜':'Los cumpleaños que importan, reunidos en un solo lugar. 💜';const bc=document.getElementById('profileBirthdayCount');if(bc)bc.textContent='Cumpleaños guardados: '+birthdays.length;const ps=document.getElementById('profileScore');if(ps)ps.textContent='Puntaje local: '+score;}
+function saveProfilePhoto(event){const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith('image/')){show('Elegí un archivo de imagen.');return;}compressProfileImage(file).then(async data=>{localStorage.setItem('cumpleHoyProfilePhoto',data);renderProfile();updateGatePhotoPreview(data);const n=localStorage.getItem('cumpleHoyProfileName')||'Jugador';const synced=await syncProfileNameToFirebase(n);const st=document.getElementById('profileStatus');if(st)st.textContent=synced?'Foto guardada y sincronizada con Firebase.':'Foto guardada en este dispositivo; no se pudo sincronizar. Revisá las reglas y la conexión.';show(synced?'¡Foto guardada y sincronizada!':'Foto guardada en este teléfono.');}).catch(e=>{console.error(e);show('No se pudo guardar la foto. Elegí otra imagen.');});event.target.value='';}
+function compressProfileImage(file){return new Promise((resolve,reject)=>{const reader=new FileReader();reader.onerror=reject;reader.onload=()=>{const img=new Image();img.onerror=reject;img.onload=()=>{const max=480,scale=Math.min(1,max/Math.max(img.width,img.height)),canvas=document.createElement('canvas');canvas.width=Math.max(1,Math.round(img.width*scale));canvas.height=Math.max(1,Math.round(img.height*scale));const ctx=canvas.getContext('2d');ctx.drawImage(img,0,0,canvas.width,canvas.height);resolve(canvas.toDataURL('image/jpeg',.78));};img.src=reader.result;};reader.readAsDataURL(file);});}
+function updateGatePhotoPreview(data){const el=document.getElementById('gatePhotoPreview');if(el)el.innerHTML=data?'<img alt="Vista previa de la foto" src="'+data+'">':'👤';const sum=document.getElementById('gateSummaryAvatar');if(sum)sum.innerHTML=data?'<img alt="Foto de perfil" src="'+data+'">':'👤';}
+async function removeProfilePhoto(){localStorage.removeItem('cumpleHoyProfilePhoto');renderProfile();const n=localStorage.getItem('cumpleHoyProfileName')||'Jugador';const synced=await syncProfileNameToFirebase(n);const st=document.getElementById('profileStatus');if(st)st.textContent=synced?'Foto quitada y cambio sincronizado.':'Foto quitada de este teléfono; no se pudo sincronizar el cambio.';show('Foto de perfil quitada.');}
+async function syncProfileNameToFirebase(n){try{await window.gameFirebaseReady;await gameDb.collection('usuarios').doc(gameAuthUser.uid).set({uid:gameAuthUser.uid,name:n,photoData:localStorage.getItem('cumpleHoyProfilePhoto')||null,friendCode:myFriendCode||null,updatedAt:firebase.firestore.FieldValue.serverTimestamp()},{merge:true});return true;}catch(e){console.error('No se pudo sincronizar el perfil:',e);return false;}}
+async function saveProfileName(){const input=document.getElementById('profileName');const n=(input?.value||'').trim();if(!n){show('Escribí tu nombre primero.');return;}localStorage.setItem('cumpleHoyProfileName',n);const st=document.getElementById('profileStatus');const synced=await syncProfileNameToFirebase(n);if(st)st.textContent=synced?'Nombre guardado y sincronizado con Firebase.':'Nombre guardado en este dispositivo; no se pudo sincronizar con Firebase. Revisá las reglas.';renderProfile();show(synced?'Nombre guardado.':'Nombre guardado localmente.');}
+function showFirstRunGate(){const gate=document.getElementById('firstRunGate');if(!gate)return;const name=localStorage.getItem('cumpleHoyProfileName')||'';const photo=localStorage.getItem('cumpleHoyProfilePhoto')||'';if(localStorage.getItem('cumpleHoyFirstRunDone')==='1'&&name&&photo){gate.style.display='none';return;}gate.style.display='flex';document.getElementById('gateNameInput').value=name;updateGatePhotoPreview(photo);}
+async function saveGateProfile(){const n=(document.getElementById('gateNameInput').value||'').trim();const photo=localStorage.getItem('cumpleHoyProfilePhoto')||'';const status=document.getElementById('gateProfileStatus');if(!n){if(status)status.textContent='Escribí tu nombre para continuar.';return;}if(!photo){if(status)status.textContent='Elegí una foto de perfil para continuar.';return;}localStorage.setItem('cumpleHoyProfileName',n);const synced=await syncProfileNameToFirebase(n);renderProfile();document.getElementById('gateSummaryName').textContent=n;updateGatePhotoPreview(photo);document.getElementById('gateStepProfile').classList.remove('active');document.getElementById('gateStepSetup').classList.add('active');const ss=document.getElementById('gateSetupStatus');if(ss)ss.textContent=synced?'Perfil guardado. Ahora podés instalar la aplicación y activar las notificaciones.':'El perfil quedó guardado en este teléfono, pero no se pudo sincronizar con Firebase. Revisaremos la conexión después.';}
+function handleGatePhoto(event){const file=event.target.files&&event.target.files[0];if(!file)return;if(!file.type.startsWith('image/')){document.getElementById('gateProfileStatus').textContent='Elegí una imagen válida.';return;}compressProfileImage(file).then(data=>{localStorage.setItem('cumpleHoyProfilePhoto',data);updateGatePhotoPreview(data);document.getElementById('gateProfileStatus').textContent='Foto lista. Ahora escribí tu nombre.';renderProfile();}).catch(e=>{console.error(e);document.getElementById('gateProfileStatus').textContent='No se pudo leer esa foto. Probá con otra imagen.';});event.target.value='';}
+function finishFirstRun(){const n=localStorage.getItem('cumpleHoyProfileName')||'';const p=localStorage.getItem('cumpleHoyProfilePhoto')||'';if(!n||!p){document.getElementById('gateStepSetup').classList.remove('active');document.getElementById('gateStepProfile').classList.add('active');return;}localStorage.setItem('cumpleHoyFirstRunDone','1');document.getElementById('firstRunGate').style.display='none';renderProfile();show('¡Bienvenido/a a Cumpleaños Hoy!');}
+const monthNames=['enero','febrero','marzo','abril','mayo','junio','julio','agosto','septiembre','octubre','noviembre','diciembre'];function dateFor(md,year){let [m,d]=md.split('-').map(Number);return new Date(year,m-1,d,12)}function nextDate(md){let now=new Date(),today=new Date(now.getFullYear(),now.getMonth(),now.getDate(),12);let d=dateFor(md,now.getFullYear());if(d<today)d=dateFor(md,now.getFullYear()+1);return d}function fmt(d){return d.getDate()+' de '+monthNames[d.getMonth()]}function daysUntil(d){let n=new Date(),t=new Date(n.getFullYear(),n.getMonth(),n.getDate(),12);return Math.round((d-t)/86400000)}function sorted(){return birthdays.slice().sort((a,b)=>nextDate(a.md)-nextDate(b.md)||a.name.localeCompare(b.name,'es'))}
+function birthdayAvatar(b){const photo=b.photoData||b.photo||b.avatarUrl||'';return photo?'<img alt="Foto de '+esc(b.name)+'" src="'+photo+'">':'🎂'}
+function renderHome(){renderProfile();let today=new Date(),md=String(today.getMonth()+1).padStart(2,'0')+'-'+String(today.getDate()).padStart(2,'0'),todays=birthdays.filter(b=>b.md===md);document.getElementById('todayBox').innerHTML=todays.length?'<div class="today"><strong>🎉 ¡Hoy celebramos!</strong>'+todays.map(b=>'<div class="today-person"><div class="avatar">'+birthdayAvatar(b)+'</div><div><strong>'+esc(b.name)+'</strong><div class="small muted">¡Hoy es su cumpleaños!</div></div></div>').join('')+'</div>':'';let upcoming=sorted().slice(0,6);document.getElementById('countLabel').textContent=birthdays.length+' personas';document.getElementById('list').innerHTML=upcoming.map(b=>{let d=nextDate(b.md),n=daysUntil(d);return '<article class="birthday"><div class="avatar">'+birthdayAvatar(b)+'</div><div class="person"><strong>'+esc(b.name)+'</strong><small>'+fmt(d)+'</small></div><div class="days">'+(n===0?'¡Hoy!':n===1?'Mañana':'En '+n+' días')+'</div></article>'}).join('')||'<p class="muted">Todavía no hay cumpleaños cargados.</p>'}
+function renderBirthdays(){let q=(document.getElementById('searchName')?.value||'').toLocaleLowerCase('es');document.getElementById('allBirthdays').innerHTML=sorted().filter(b=>b.name.toLocaleLowerCase('es').includes(q)).map(b=>'<article class="birthday"><div class="avatar">'+birthdayAvatar(b)+'</div><div class="person"><strong>'+esc(b.name)+'</strong><small>'+fmt(dateFor(b.md,2000))+'</small></div><button class="pill" onclick="removeBirthday('+JSON.stringify(b.name).replace(/'/g,"\\'")+','+JSON.stringify(b.md)+')" aria-label="Eliminar cumpleaños">Quitar</button></article>').join('')}
+function addBirthday(){let name=document.getElementById('newName').value.trim(),v=document.getElementById('newDate').value;if(!name||!v){show('Escribí el nombre y la fecha.');return}let d=new Date(v+'T12:00:00'),md=String(d.getMonth()+1).padStart(2,'0')+'-'+String(d.getDate()).padStart(2,'0');if(birthdays.some(b=>b.name.toLocaleLowerCase('es')===name.toLocaleLowerCase('es')&&b.md===md)){show('Ese cumpleaños ya está cargado.');return}birthdays.push({name,md,photoData:''});save();document.getElementById('newName').value='';document.getElementById('newDate').value='';renderBirthdays();renderHome();show('Cumpleaños guardado en este dispositivo.')}function removeBirthday(name,md){birthdays=birthdays.filter(b=>!(b.name===name&&b.md===md));save();renderBirthdays();renderHome();show('Cumpleaños quitado.')}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function share(){let msg='🎂 ¡Feliz cumpleaños! Que Dios te bendiga y te regale un año lleno de amor, salud y alegría. ¡Un abrazo grande! 💜';if(navigator.share)navigator.share({title:'cumpleaños hoy',text:msg}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(msg).then(()=>show('¡Saludo copiado! Ya podés pegarlo en WhatsApp.')).catch(()=>show(msg));else show(msg)}
+function testAlert(){let sound=document.getElementById('soundOn').checked,vib=document.getElementById('vibrateOn').checked,secs=Number(document.getElementById('duration').value),vol=Number(document.getElementById('volume').value)/100,status=document.getElementById('alertStatus');let vibrated=false;if(vib&&navigator.vibrate){try{vibrated=navigator.vibrate([250,120,250,120,350])}catch(e){}}if(sound){try{let AC=window.AudioContext||window.webkitAudioContext;if(!AC)throw Error('no audio');let ctx=new AC();if(ctx.state==='suspended')ctx.resume();let start=ctx.currentTime;[0,.42,.84,1.26,1.68,2.1,2.52].filter(t=>t<secs).forEach((t,i)=>{let osc=ctx.createOscillator(),gain=ctx.createGain();osc.type='sine';osc.frequency.value=[784,988,1175,988][i%4];gain.gain.setValueAtTime(0.0001,start+t);gain.gain.exponentialRampToValueAtTime(Math.max(.001,vol*.12),start+t+.025);gain.gain.exponentialRampToValueAtTime(.0001,start+t+.27);osc.connect(gain);gain.connect(ctx.destination);osc.start(start+t);osc.stop(start+t+.29)});setTimeout(()=>ctx.close(),(secs+.5)*1000);status.textContent='Reproduciendo un tono de prueba durante '+secs+' segundos.'}catch(e){status.textContent='No se pudo reproducir el sonido en este navegador. Probá habilitar el audio del teléfono.'}}else status.textContent='Sonido desactivado.';if(vib&&!('vibrate'in navigator))status.textContent+=' Este navegador no admite vibración; probá la app instalada en Android.';else if(vib)status.textContent+=' Se envió la orden de vibración si el dispositivo la admite.';show('Prueba de alerta iniciada.')}
+const games=[
+{title:'🧠 Trivia bíblica',desc:'Elegí la respuesta correcta.',qs:{facil:[['¿Quién construyó el arca?',['Moisés','Noé','David'],1],['¿Quién venció a Goliat?',['David','Pedro','José'],0],['¿En qué ciudad nació Jesús?',['Nazaret','Jerusalén','Belén'],2],['¿Quién fue tragado por un gran pez?',['Jonás','Pablo','Elías'],0]],intermedio:[['¿Quién sucedió a Moisés como líder de Israel?',['Josué','Aarón','Caleb'],0],['¿Qué reina visitó a Salomón para probar su sabiduría?',['Ester','La reina de Sabá','Débora'],1],['¿Quién interpretó la escritura en la pared para el rey Belsasar?',['Daniel','Ezequiel','Nehemías'],0]],dificil:[['¿Qué juez hizo un voto imprudente relacionado con su hija?',['Gedeón','Jefté','Sansón'],1],['¿Quién era el padre de Matusalén?',['Enoc','Lamec','Jared'],0],['¿En qué isla estaba Pablo cuando recibió una visión del Señor?',['Creta','Malta','Patmos'],2]]}},
+{title:'✅ Verdadero o falso',desc:'Poné a prueba lo que recordás.',qs:{facil:[['Moisés recibió los Diez Mandamientos.',['Verdadero','Falso'],0],['David fue el primero de los doce apóstoles.',['Verdadero','Falso'],1],['Jesús alimentó a una multitud con panes y peces.',['Verdadero','Falso'],0],['Noé construyó una torre para llegar al cielo.',['Verdadero','Falso'],1]],intermedio:[['Rut era la suegra de Noemí.',['Verdadero','Falso'],1],['Pablo fue conocido antes como Saulo.',['Verdadero','Falso'],0],['El libro de Hechos relata el comienzo de la iglesia.',['Verdadero','Falso'],0]],dificil:[['El profeta Natán confrontó al rey David por su pecado.',['Verdadero','Falso'],0],['Abdías es el libro más largo del Antiguo Testamento.',['Verdadero','Falso'],1],['Priscila y Aquila ayudaron a instruir a Apolos.',['Verdadero','Falso'],0]]}},
+{title:'🧩 Completar el versículo',desc:'Elegí la palabra que falta.',qs:{facil:[['“El Señor es mi ___; nada me faltará.” (Salmo 23:1)',['Pastor','Rey','Amigo'],0],['“La fe, la esperanza y el amor; pero el mayor de ellos es el ___.” (1 Corintios 13:13)',['conocimiento','amor','valor'],1],['“Lámpara es a mis pies tu palabra y ___ a mi camino.” (Salmo 119:105)',['luz','fuerza','paz'],0]],intermedio:[['“Estad quietos, y conoced que yo soy ___.” (Salmo 46:10)',['Dios','fuerte','bueno'],0],['“Todo lo puedo en Cristo que me ___.” (Filipenses 4:13)',['ama','fortalece','guía'],1],['“La respuesta suave quita la ___.” (Proverbios 15:1)',['tristeza','ira','duda'],1]],dificil:[['“Porque por gracia sois salvos por medio de la ___.” (Efesios 2:8)',['fe','ley','esperanza'],0],['“El fruto del Espíritu es amor, gozo, paz, ___...” (Gálatas 5:22)',['paciencia','riqueza','fama'],0],['“No nos cansemos, pues, de hacer ___.” (Gálatas 6:9)',['silencio','bien','promesas'],1]]}},
+{title:'🕵️ ¿Quién soy?',desc:'Adiviná el personaje bíblico.',qs:{facil:[['Me enfrenté a un gigante llamado Goliat. ¿Quién soy?',['Salomón','David','Andrés'],1],['Fui arrojado al foso de los leones. ¿Quién soy?',['Daniel','Jonás','Isaías'],0],['Guié al pueblo de Israel fuera de Egipto. ¿Quién soy?',['Josué','Moisés','Abraham'],1],['Negué a Jesús tres veces. ¿Quién soy?',['Pedro','Juan','Tomás'],0]],intermedio:[['Pedí a Dios sabiduría para gobernar. ¿Quién soy?',['Saúl','Salomón','Ezequías'],1],['Fui jueza y profetisa de Israel. ¿Quién soy?',['Débora','Miriam','Ana'],0],['Subí a un sicómoro para ver a Jesús. ¿Quién soy?',['Bartimeo','Zaqueo','Nicodemo'],1]],dificil:[['Fui rey y también escribí muchos proverbios. ¿Quién soy?',['Salomón','Josías','Roboam'],0],['Interpreté sueños en Babilonia y serví bajo varios reyes. ¿Quién soy?',['Esdras','Daniel','Amós'],1],['Fui compañero de Pablo y médico. ¿Quién soy?',['Lucas','Silas','Marcos'],0]]}},
+{title:'⚡ Desafío rápido',desc:'Preguntas cortas para responder sin tardar.',qs:{facil:[['¿Cuántos discípulos tuvo Jesús?',['10','12','7'],1],['¿Cuál es el primer libro de la Biblia?',['Éxodo','Salmos','Génesis'],2],['¿Quién interpretó los sueños del faraón?',['José','Isaac','Job'],0],['¿Quién bautizó a Jesús?',['Pedro','Juan el Bautista','Pablo'],1]],intermedio:[['¿Cuántos días estuvo Jonás en el vientre del pez?',['Uno','Tres días y tres noches','Siete'],1],['¿En qué río fue bautizado Jesús?',['Jordán','Nilo','Éufrates'],0],['¿Quién fue el primer mártir cristiano mencionado en Hechos?',['Esteban','Santiago','Felipe'],0]],dificil:[['¿Cuántas iglesias se mencionan en Apocalipsis al comienzo del libro?',['Cinco','Siete','Doce'],1],['¿Quién era el sumo sacerdote cuando Samuel era niño?',['Elí','Aarón','Sadoc'],0],['¿Qué compañero de Pablo fue dejado enfermo en Mileto?',['Timoteo','Trófimo','Tito'],1]]}},
+{title:'🌿 Personajes y milagros',desc:'Un desafío extra sobre relatos bíblicos.',qs:{facil:[['¿Quién caminó sobre el agua hacia Jesús?',['Pedro','Mateo','Zaqueo'],0],['¿Qué convirtió Jesús en vino?',['Agua','Aceite','Leche'],0],['¿Quién subió a un árbol para ver a Jesús?',['Nicodemo','Zaqueo','Bartimeo'],1]],intermedio:[['¿A quién resucitó Jesús después de cuatro días en la tumba?',['Lázaro','Jairo','Esteban'],0],['¿Qué profeta hizo flotar la cabeza de un hacha?',['Elías','Eliseo','Isaías'],1],['¿Qué discípulo encontró primero a su hermano Simón para llevarlo a Jesús?',['Andrés','Felipe','Tomás'],0]],dificil:[['¿Qué rey enfermó y vio retroceder la sombra como señal?',['Ezequías','Josafat','Acaz'],0],['¿Qué mujer escondió a los espías israelitas en Jericó?',['Rahab','Jael','Abigail'],0],['¿Quién cayó de una ventana mientras Pablo hablaba largamente?',['Eutico','Onésimo','Tíquico'],0]]}}
+];
+let gameProgress={};function renderGames(){document.getElementById('gamesList').innerHTML=games.map((g,gi)=>{let p=gameProgress[gi]||{q:0,correct:0,done:false,level:'facil'},level=p.level||'facil',qs=g.qs[level];if(p.done)return '<div class="gamecard"><h3>'+g.title+'</h3><label class="field">Dificultad<select onchange="changeLevel('+gi+',this.value)">'+levelOptions(level)+'</select></label><p>Terminaste este nivel: '+p.correct+' de '+qs.length+' correctas.</p><button class="btn secondary" onclick="startGame('+gi+')">Jugar de nuevo</button></div>';let q=qs[p.q];return '<div class="gamecard"><h3>'+g.title+'</h3><p>'+g.desc+'</p><label class="field">Dificultad<select onchange="changeLevel('+gi+',this.value)">'+levelOptions(level)+'</select></label><div class="small muted">Pregunta '+(p.q+1)+' de '+qs.length+' · Aciertos: '+p.correct+'</div><p><strong>'+esc(q[0])+'</strong></p>'+q[1].map((a,ai)=>'<button class="option" onclick="answer('+gi+','+ai+')">'+esc(a)+'</button>').join('')+'<div id="gameResult'+gi+'" class="result"></div></div>'}).join('');document.getElementById('scoreLine').textContent=score+' respuestas correctas en esta sesión.'}
+function levelOptions(selected){return [['facil','Fácil'],['intermedio','Intermedio'],['dificil','Difícil']].map(([v,label])=>'<option value="'+v+'" '+(selected===v?'selected':'')+'>'+label+'</option>').join('')}
+function changeLevel(i,level){gameProgress[i]={q:0,correct:0,done:false,level};renderGames();show('Nivel cambiado a '+({facil:'fácil',intermedio:'intermedio',dificil:'difícil'}[level])+'. ¡A jugar!')}
+function startGame(i){let level=(gameProgress[i]||{}).level||'facil';gameProgress[i]={q:0,correct:0,done:false,level};renderGames()}
+function playGameSound(kind){try{const AC=window.AudioContext||window.webkitAudioContext;if(!AC)return;const ctx=new AC();if(ctx.state==='suspended')ctx.resume();const now=ctx.currentTime;const notes=kind==='correct'?[660,880,1100]:kind==='wrong'?[260,190]:kind==='finish'?[523,659,784,1046]:[440,660];notes.forEach((freq,i)=>{const osc=ctx.createOscillator(),gain=ctx.createGain();osc.type=kind==='wrong'?'triangle':'sine';osc.frequency.setValueAtTime(freq,now+i*.11);gain.gain.setValueAtTime(.0001,now+i*.11);gain.gain.exponentialRampToValueAtTime(.12,now+i*.11+.025);gain.gain.exponentialRampToValueAtTime(.0001,now+i*.11+.19);osc.connect(gain);gain.connect(ctx.destination);osc.start(now+i*.11);osc.stop(now+i*.11+.21)});setTimeout(()=>ctx.close(),1000);}catch(e){console.debug('Audio no disponible',e)}}
+function gameCelebration(){let fx=document.createElement('div');fx.className='game-fx';fx.setAttribute('aria-hidden','true');const symbols=['✨','🎉','⭐','💜','🎊'];for(let i=0;i<22;i++){let sp=document.createElement('span');sp.textContent=symbols[i%symbols.length];sp.style.left=(Math.random()*100)+'%';sp.style.animationDelay=(Math.random()*.35)+'s';fx.appendChild(sp)}document.body.appendChild(fx);setTimeout(()=>fx.remove(),1800)}
+function answer(gi,ai){let p=gameProgress[gi]||{q:0,correct:0,done:false,level:'facil'},g=games[gi],qs=g.qs[p.level||'facil'];if(p.done)return;const current=qs[p.q];const correct=current[2]===ai;const card=[...document.querySelectorAll('.gamecard')].find(el=>el.querySelector('h3')&&el.querySelector('h3').textContent===g.title);if(card){card.classList.remove('game-pop');void card.offsetWidth;card.classList.add('game-pop');const buttons=card.querySelectorAll('.option');if(buttons[ai])buttons[ai].classList.add(correct?'correct-answer':'wrong-answer');}if(correct){p.correct++;score++;playGameSound('correct');gameCelebration();show('¡Excelente! ¡Respuesta correcta! 🎉')}else{playGameSound('wrong');show('¡Casi! Seguí intentando 💪')}p.q++;if(p.q>=qs.length){p.done=true;playGameSound('finish');show('¡Nivel terminado! Puntaje: '+p.correct+' de '+qs.length+' 🏆')}gameProgress[gi]=p;setTimeout(()=>{renderGames();document.getElementById('scoreLine').textContent=score+' respuestas correctas en esta sesión.'},180)}
+function resetScore(){score=0;gameProgress={};renderGames();show('Puntaje reiniciado.')}
+// Fecha y hora en vivo
+const dateFmt = new Intl.DateTimeFormat('es-AR',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+function updateClock(){const now=new Date(),dateEl=document.getElementById('dateLine'),clockEl=document.getElementById('clockLine');if(dateEl)dateEl.textContent=dateFmt.format(now).replace(/^./,c=>c.toLocaleUpperCase('es-AR'));if(clockEl)clockEl.textContent=new Intl.DateTimeFormat('es-AR',{hour:'2-digit',minute:'2-digit',second:'2-digit',hour12:false}).format(now)}
+updateClock();setInterval(updateClock,1000);
+const dailyVerses=[['“El Señor es mi pastor; nada me faltará.”','Salmo 23:1'],['“Todo lo puedo en Cristo que me fortalece.”','Filipenses 4:13'],['“Confía en el Señor con todo tu corazón.”','Proverbios 3:5'],['“El amor es paciente, es bondadoso.”','1 Corintios 13:4'],['“Este es el día que hizo el Señor; nos gozaremos y alegraremos en él.”','Salmo 118:24'],['“No temas, porque yo estoy contigo.”','Isaías 41:10'],['“La paz les dejo; mi paz les doy.”','Juan 14:27'],['“Dios es nuestro amparo y fortaleza.”','Salmo 46:1'],['“Sean bondadosos y compasivos unos con otros.”','Efesios 4:32'],['“Busquen primero el reino de Dios.”','Mateo 6:33'],['“El Señor te bendiga y te guarde.”','Números 6:24'],['“Ama a tu prójimo como a ti mismo.”','Mateo 22:39'],['“Encomienda al Señor tu camino; confía en él.”','Salmo 37:5'],['“Estén siempre alegres.”','1 Tesalonicenses 5:16']];
+function renderDailyVerse(){const start=new Date(new Date().getFullYear(),0,0),now=new Date(),day=Math.floor((now-start)/86400000),v=dailyVerses[(day-1)%dailyVerses.length];document.getElementById('dailyVerse').textContent=v[0];document.getElementById('verseRef').textContent=v[1]}renderDailyVerse();
+function weatherIcon(code){if(code===0)return '☀️';if([1,2].includes(code))return '🌤️';if(code===3)return '☁️';if([45,48].includes(code))return '🌫️';if([51,53,55,56,57].includes(code))return '🌦️';if([61,63,65,66,67,80,81,82].includes(code))return '🌧️';if([71,73,75,77,85,86].includes(code))return '❄️';if([95,96,99].includes(code))return '⛈️';return '🌡️'}
+function showWeatherError(msg){document.getElementById('weatherNow').textContent=msg;document.getElementById('forecast').innerHTML=''}
+async function fetchWeather(lat,lon,label){const url=`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,relative_humidity_2m,weather_code&daily=weather_code,temperature_2m_max,temperature_2m_min&timezone=auto&forecast_days=5`;try{const res=await fetch(url);if(!res.ok)throw Error('weather');const data=await res.json();document.getElementById('weatherPlace').textContent=label;document.getElementById('weatherNow').innerHTML=`<div style="display:flex;align-items:center;gap:12px"><span style="font-size:38px">${weatherIcon(data.current.weather_code)}</span><div><strong style="font-size:25px">${Math.round(data.current.temperature_2m)} °C</strong><div class="small muted">Sensación ${Math.round(data.current.apparent_temperature)} °C · Humedad ${data.current.relative_humidity_2m}%</div></div></div>`;document.getElementById('forecast').innerHTML=data.daily.time.map((d,i)=>`<div class="forecast-day"><strong>${i===0?'Hoy':new Intl.DateTimeFormat('es-AR',{weekday:'short',timeZone:'UTC'}).format(new Date(d+'T12:00:00Z')).replace('.','')}</strong><div class="wx">${weatherIcon(data.daily.weather_code[i])}</div><div class="temp">${Math.round(data.daily.temperature_2m_max[i])}° / ${Math.round(data.daily.temperature_2m_min[i])}°</div></div>`).join('')}catch(e){showWeatherError('No pudimos consultar el clima. Revisá tu conexión e intentá actualizar.')}}
+async function loadWeather(force=false){if(!force&&window.__weatherLoaded)return;window.__weatherLoaded=true;if(!navigator.geolocation){showWeatherError('Tu navegador no permite consultar la ubicación. Habilitá la ubicación en el navegador.');return}document.getElementById('weatherNow').textContent='Consultando el clima…';navigator.geolocation.getCurrentPosition(pos=>fetchWeather(pos.coords.latitude,pos.coords.longitude,'Tu ubicación'),()=>{showWeatherError('Permití la ubicación para ver el clima de tu zona. La ubicación solo se usa para consultar el pronóstico.');window.__weatherLoaded=false},{enableHighAccuracy:false,timeout:10000,maximumAge:3600000})}loadWeather();
+let deferredInstallPrompt=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstallPrompt=e;const b=document.getElementById('installBtn');if(b)b.style.display='inline-block'});window.addEventListener('appinstalled',()=>{deferredInstallPrompt=null;show('¡cumpleaños hoy quedó instalada en este dispositivo!');updateSetupCard()});
+function updateSetupCard(){const card=document.getElementById('setupCard');if(!card)return;const installed=window.matchMedia('(display-mode: standalone)').matches||window.navigator.standalone===true;const granted=('Notification' in window&&Notification.permission==='granted');const dismissed=sessionStorage.getItem('setupDismissed')==='1';card.style.display=(installed&&granted)||dismissed?'none':'block';const status=document.getElementById('setupStatus');if(status){if(installed&&granted)status.textContent='¡Listo! La aplicación está instalada y las notificaciones están permitidas.';else if(granted)status.textContent='Notificaciones permitidas en este dispositivo. Aún falta conectar el envío automático de invitaciones grupales.';else if(installed)status.textContent='La aplicación parece instalada. Activá las notificaciones para continuar.';}const s=document.getElementById('settingsNotificationStatus');if(s){s.textContent=granted?'Notificaciones permitidas en este dispositivo.':'Permiso de notificaciones: '+(('Notification' in window)?Notification.permission:'no disponible en este navegador')+'.';}}
+function dismissSetup(){sessionStorage.setItem('setupDismissed','1');const c=document.getElementById('setupCard');if(c)c.style.display='none';show('Podés instalar la aplicación y activar las notificaciones desde Ajustes cuando quieras.')}
+async function getPushToken(){
+  if(!firebase.messaging) throw new Error('Firebase Messaging no está disponible');
+  if(!('serviceWorker' in navigator)) throw new Error('Este navegador no admite service workers');
+  const registration = await navigator.serviceWorker.register('./firebase-messaging-sw.js');
+  const messaging = firebase.messaging();
+  const token = await messaging.getToken({
+    vapidKey: 'BAI8Jf92y8gsZ6j950DyBxtoZOMrkUkzHGgWn07FYNWmKqMjw2hnGrmEnpI4uDeMjXEt3KHdGOnT6gNw_TPod8Q',
+    serviceWorkerRegistration: registration
+  });
+  if(!token) throw new Error('Firebase no devolvió un token de notificaciones');
+  // El token se obtiene aquí, pero todavía falta registrarlo en una colección segura
+  // de Firestore y configurar un servidor que envíe las notificaciones push.
+  window.cumpleHoyPushToken = token;
+  return token;
+}
+async function enableNotifications(){const status=document.getElementById('setupStatus');const settingsStatus=document.getElementById('settingsNotificationStatus');const setStatus=m=>{if(status)status.textContent=m;if(settingsStatus)settingsStatus.textContent=m;const gateStatus=document.getElementById('gateSetupStatus');if(gateStatus)gateStatus.textContent=m};if(!('Notification' in window)){setStatus('Este navegador no permite solicitar notificaciones aquí. Probá instalar la aplicación desde un navegador compatible.');show('Las notificaciones no están disponibles en este navegador.');return;}if(!window.isSecureContext){setStatus('Para activar notificaciones, abrí la aplicación desde un sitio seguro (HTTPS) y no desde un archivo local.');show('Abrí la aplicación desde un enlace HTTPS para activar notificaciones.');return;}try{const permission=await Notification.requestPermission();if(permission==='granted'){let pushMessage='¡Permiso concedido!';try{await getPushToken();pushMessage='¡Permiso concedido y token push generado!';}catch(pushErr){console.error('Firebase Messaging:',pushErr);pushMessage='Permiso concedido, pero no se pudo generar el token push. Revisá firebase-messaging-sw.js y la configuración de Firebase Messaging.';}setStatus(pushMessage+' Para recibir invitaciones grupales con la app cerrada todavía falta registrar el token en Firestore y configurar un servidor de envío.');if('serviceWorker' in navigator){const reg=await navigator.serviceWorker.ready;try{await reg.showNotification('cumpleaños hoy',{body:'¡Notificaciones activadas en este dispositivo!',icon:'icon-192.png',badge:'icon-192.png'});}catch(e){new Notification('cumpleaños hoy',{body:'¡Notificaciones activadas en este dispositivo!',icon:'icon-192.png'});}}else{new Notification('cumpleaños hoy',{body:'¡Notificaciones activadas en este dispositivo!',icon:'icon-192.png'});}show(pushMessage+' Falta conectar el envío automático de invitaciones grupales.');updateSetupCard();}else{const m=permission==='denied'?'El permiso está bloqueado. Cambialo desde los ajustes del navegador o del celular.':'No se concedió el permiso. Podés volver a intentarlo más tarde.';setStatus(m);show(m);}}catch(e){setStatus('No se pudo activar el permiso. Revisá la configuración del navegador.');show('No se pudieron activar las notificaciones.');}}
+async function installApp(){const status=document.getElementById('gateSetupStatus');if(deferredInstallPrompt){deferredInstallPrompt.prompt();const choice=await deferredInstallPrompt.userChoice;deferredInstallPrompt=null;if(choice&&choice.outcome==='accepted'){if(status)status.textContent='¡Aplicación instalada! Ahora activá las notificaciones.';show('¡Gracias por instalar Cumpleaños Hoy!');}else if(status)status.textContent='No se completó la instalación. Podés volver a intentarlo o usar el menú del navegador.';}else{const msg='En Android: abrí el menú ⋮ de Chrome y elegí “Instalar aplicación” o “Agregar a pantalla principal”. Si no aparece, primero abrí la web en Chrome y revisá que esté publicada por HTTPS.';if(status)status.textContent=msg;show(msg);}}
+function inviteApp(){const msg='💜 Te invito a probar cumpleaños hoy: cumpleaños, clima, versículo diario y juegos bíblicos en un solo lugar. Abrí este enlace en tu celular y elegí “Instalar” o “Agregar a pantalla de inicio”: '+location.href;if(navigator.share)navigator.share({title:'cumpleaños hoy',text:msg,url:location.href}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(msg).then(()=>show('¡Invitación copiada! Pegala en WhatsApp.')).catch(()=>show(msg));else show(msg)}
+if('serviceWorker' in navigator&&location.protocol!=='file:')window.addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+window.addEventListener('load',()=>{renderProfile();showFirstRunGate();updateSetupCard();});
+
+
+
+async function inviteGame(){
+ const games=['Trivia bíblica','Verdadero o falso','Completar el versículo','¿Quién soy?','Desafío rápido','Personajes y milagros'];
+ const pick=prompt('¿A qué juego querés invitar?\n'+games.map((g,i)=>(i+1)+'. '+g).join('\n')+'\n\nEscribí el número:','1');
+ if(pick===null)return;const idx=Number(pick)-1;
+ if(!Number.isInteger(idx)||idx<0||idx>=games.length){show('Elegí un número del 1 al 6.');return;}
+ const lev=prompt('Dificultad:\n1. Fácil\n2. Intermedio\n3. Difícil','1');if(lev===null)return;
+ const levels={'1':'Fácil','2':'Intermedio','3':'Difícil'};if(!levels[lev]){show('Elegí una dificultad del 1 al 3.');return;}
+ const recipientCode=prompt('Escribí el código de jugador de tu amigo (lo encontrás en su sección Notificaciones).','');if(recipientCode===null)return;
+ const cleanCode=recipientCode.trim().toUpperCase();if(!/^[A-Z0-9]{6}$/.test(cleanCode)){show('El código debe tener 6 letras o números.');return;}
+ const when=prompt('¿Qué día y hora? (por ejemplo: hoy 20:30 o sábado 18:00)','Ahora');if(when===null)return;
+ try{
+   await window.gameFirebaseReady;
+   if(!myFriendCode)await ensurePlayerIdentity();
+   const code='J'+Math.random().toString(36).slice(2,9).toUpperCase();
+   const targetSnap=await gameDb.collection('codigosJugador').doc(cleanCode).get();
+   if(!targetSnap.exists){show('No encontramos ese código. Pedile a tu amigo que abra Notificaciones y te comparta su código.');return;}
+   const target=targetSnap.data();if(target.uid===gameAuthUser.uid){show('No podés invitarte a vos mismo.');return;}
+   const ownSnap=await gameDb.collection('usuarios').doc(gameAuthUser.uid).get();const own=ownSnap.exists?ownSnap.data():{};
+   const game={code,game:games[idx],level:levels[lev],when:when.trim().slice(0,100),ownerUid:gameAuthUser.uid,ownerName:own.name||localStorage.getItem('cumpleHoyProfileName')||'Jugador',createdAt:firebase.firestore.FieldValue.serverTimestamp()};
+   await gameDb.collection('partidas').doc(code).set(game);
+   await gameDb.collection('invitaciones').add({gameCode:code,game:game.game,level:game.level,when:game.when,senderUid:gameAuthUser.uid,senderName:game.ownerName,recipientUid:target.uid,recipientCode:cleanCode,status:'pending',createdAt:firebase.firestore.FieldValue.serverTimestamp()});
+   activeGameCode=code;await watchGroupGame(code,game,true);show('¡Invitación enviada dentro de Cumpleaños Hoy! El amigo la verá en Notificaciones cuando tenga la app abierta.');
+   const panel=ensureGroupPanel();panel.scrollIntoView({behavior:'smooth',block:'center'});
+ }catch(e){console.error('Crear invitación:',e);show('No se pudo enviar. Publicá las nuevas reglas de firestore.rules y verificá Firebase.');}
+}
+
+function shareDailyVerse(){
+ const verse=document.getElementById('dailyVerse')?.textContent||'';
+ const ref=document.getElementById('verseRef')?.textContent||'';
+ const message=`📖 Versículo del día — cumpleaños hoy\n\n${verse}\n${ref}\n\nQue la Palabra de Dios nos acompañe hoy. 💜`;
+ shareText(message,'Versículo del día');
+}
+function shareText(message,title){
+ if(navigator.share){navigator.share({title,text:message}).catch(()=>copyText(message));}
+ else copyText(message);
+}
+function copyText(message){
+ if(navigator.clipboard){navigator.clipboard.writeText(message).then(()=>show('Texto copiado. Ahora pegalo en WhatsApp.')).catch(()=>show(message));}
+ else show(message);
+}
+
+renderHome();
+updateSetupCard();
+</script></body></html>

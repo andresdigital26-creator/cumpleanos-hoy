@@ -1,11 +1,18 @@
-CUMPLEAÑOS HOY — INVITACIONES REALES DENTRO DE LA APP
+CUMPLEAÑOS HOY — ACTUALIZACIÓN DE INTERFAZ
 
-1) Hacé una copia de seguridad del repositorio actual.
-2) Reemplazá index.html y conservá/subí manifest.webmanifest, sw.js, icon-192.png e icon-512.png.
-3) En Firebase Authentication habilitá el método Anónimo.
-4) En Firestore > Rules reemplazá por el archivo firestore.rules de este ZIP y pulsá Publicar.
-5) Abrí la app en ambos celulares. En cada uno, entrá a Perfil, guardá un nombre; luego en Notificaciones copiá el código de jugador. Compartí esos códigos una sola vez entre ustedes.
-6) En el primer celular: Jugar > Invitar a jugar, elegí juego/dificultad e ingresá el código del otro jugador.
-7) Con la app abierta en el segundo celular, la invitación debe aparecer en Notificaciones y responderse desde allí.
+Incluye:
+- Foto de perfil y saludo con el nombre en el cartel principal.
+- En la lista de cumpleaños, se muestra una foto si el registro ya contiene photoData, photo o avatarUrl; si no, se mantiene el pastel.
+- Los cambios de foto intentan sincronizarse con el documento usuarios/{uid} de Firebase.
 
-LIMITACIONES: las invitaciones se sincronizan en la app mientras el destinatario esté conectado y tenga la app abierta. Las notificaciones push con la app cerrada requieren configurar FCM y un backend confiable. Los perfiles anónimos dependen del navegador/dispositivo. La foto todavía no se sincroniza entre celulares.
+IMPORTANTE:
+Esta actualización NO completa por sí sola la sincronización de las fotos de las personas que cumplen años entre distintos teléfonos. Los cumpleaños actuales se guardan en el almacenamiento local y no tienen un vínculo con el UID del perfil de cada persona. Para lograrlo hay que ajustar el modelo de datos y las reglas de Firestore de forma coordinada, y probarlo con dos cuentas/celulares.
+
+CÓMO SUBIR:
+1. Descomprimí este ZIP.
+2. En GitHub, abrí index.html.
+3. Elegí editar (lápiz) o subir el archivo nuevo y reemplazá el index.html existente.
+4. Guardá/confirmá los cambios.
+5. Esperá a que GitHub Pages publique y abrí la app. Si aparece la versión anterior, recargá la página.
+
+No reemplaces firestore.rules con reglas genéricas ni publiques reglas de prueba abiertas. Las reglas deben coincidir con las operaciones reales de la aplicación.
