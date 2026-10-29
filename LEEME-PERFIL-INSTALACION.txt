@@ -1,0 +1,17 @@
+CUMPLEAÑOS HOY — PERFIL, INSTALACIÓN Y NOTIFICACIONES
+
+CAMBIOS
+- Al abrir por primera vez, aparece una pantalla para elegir foto de perfil y escribir nombre.
+- Luego muestra botones para instalar y activar notificaciones.
+- La foto se comprime y se guarda localmente en el teléfono.
+- El nombre intenta sincronizarse con Firebase/Firestore.
+- Se conserva el flujo de instalación PWA y el permiso de notificaciones.
+
+IMPORTANTE
+1. Hacé copia de seguridad de tu repositorio antes de reemplazar archivos.
+2. Subí los archivos a la raíz del repositorio, no dentro de una subcarpeta.
+3. La web debe estar publicada en HTTPS.
+4. La foto de perfil se guarda en este dispositivo; compartirla entre celulares requiere almacenamiento/sincronización adicional.
+5. Obtener permiso de notificaciones no significa que las invitaciones push estén funcionando: todavía requiere registrar tokens y un backend seguro que envíe mensajes.
+6. Para instalar en Android, abrí la web publicada en Chrome y usá “Instalar aplicación” o menú ⋮ > “Agregar a pantalla principal”.
+7. Si el navegador ya tiene permiso de notificaciones denegado, habilitalo desde Ajustes del sitio en Chrome/Android.
