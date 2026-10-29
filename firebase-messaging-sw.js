@@ -1,4 +1,5 @@
-
+/* Service worker de Firebase Cloud Messaging para Cumpleaños Hoy.
+   El envío de mensajes push requiere un backend seguro configurado en Firebase. */
 importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js');
 importScripts('https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js');
 
@@ -12,40 +13,23 @@ firebase.initializeApp({
 });
 
 const messaging = firebase.messaging();
-
 messaging.onBackgroundMessage((payload) => {
-  const notificationTitle =
-    payload.notification?.title || 'Cumpleaños Hoy';
-
-  const notificationOptions = {
-    body: payload.notification?.body || '¡Tienes una invitación para jugar!',
+  const title = (payload.notification && payload.notification.title) || 'Cumpleaños Hoy';
+  const options = {
+    body: (payload.notification && payload.notification.body) || 'Tenés una nueva notificación.',
     icon: './icon-192.png',
+    badge: './icon-192.png',
     data: payload.data || {}
   };
-
-  return self.registration.showNotification(
-    notificationTitle,
-    notificationOptions
-  );
+  self.registration.showNotification(title, options);
 });
 
 self.addEventListener('notificationclick', (event) => {
   event.notification.close();
-
-  event.waitUntil(
-    clients.matchAll({
-      type: 'window',
-      includeUncontrolled: true
-    }).then((clientList) => {
-      for (const client of clientList) {
-        if ('focus' in client) {
-          return client.focus();
-        }
-      }
-
-      if (clients.openWindow) {
-        return clients.openWindow('./');
-      }
-    })
-  );
+  event.waitUntil(clients.matchAll({ type: 'window', includeUncontrolled: true }).then((clientList) => {
+    for (const client of clientList) {
+      if ('focus' in client) return client.focus();
+    }
+    if (clients.openWindow) return clients.openWindow('./');
+  }));
 });
