@@ -1,0 +1,28 @@
+CUMPLEAÑOS HOY - ACTUALIZACIÓN DE PERFILES COMUNITARIOS
+
+CONTENIDO
+- index.html: aplicación actualizada.
+- firestore.rules: reglas de Firestore compatibles con los perfiles compartidos.
+
+CAMBIOS
+- Se quitan los códigos, invitaciones y partidas grupales.
+- Se conservan los juegos individuales.
+- El perfil ahora pide nombre, foto y fecha de nacimiento.
+- Cada perfil se guarda en Firestore en usuarios/{uid} con los campos uid, name, birthday y photoData.
+- birthday se comparte como MM-DD (día y mes); no se comparte el año de nacimiento.
+- Los perfiles autenticados pueden leer la lista comunitaria; cada persona solo puede modificar su propio perfil.
+- Los cumpleaños que ya estaban guardados localmente se conservan en el almacenamiento del navegador.
+- Los cumpleaños manuales agregados desde Calendario siguen siendo locales; la lista comunitaria se forma con perfiles de usuarios.
+
+INSTALACIÓN
+1. Guardá una copia de seguridad del index.html actual de GitHub.
+2. Reemplazá solamente index.html por el de este paquete. No borres manifest.webmanifest, iconos, sw.js ni otros archivos existentes del repositorio.
+3. Las reglas de Firestore ya se publicaron manualmente en Firebase durante la configuración. firestore.rules se incluye como copia de referencia; no hace falta volver a publicarlas si son idénticas.
+4. Esperá a que GitHub Pages actualice el sitio y probá en dos celulares distintos.
+
+IMPORTANTE
+- No se ha realizado una prueba real con dos dispositivos conectados a tu proyecto Firebase desde este entorno.
+- La sincronización requiere que la aplicación esté publicada en HTTPS y que el acceso anónimo siga habilitado.
+- La foto se comprime antes de guardarse en Firestore para respetar el límite de tamaño de documento.
+- La comunidad es visible para cualquier usuario autenticado de esta aplicación. No cargues información que no quieras compartir.
+- Los cumpleaños manuales que ya existían se mantienen en el dispositivo original. No se migran automáticamente a la comunidad.
