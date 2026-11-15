@@ -1,12 +1,31 @@
 
-const CACHE_NAME = 'cumpleanos-hoy-v4';
+const CACHE_NAME = 'cumpleanos-hoy-v5';
+
+// Firebase
+importScripts(
+  'https://www.gstatic.com/firebasejs/10.12.2/firebase-app-compat.js'
+);
+importScripts(
+  'https://www.gstatic.com/firebasejs/10.12.2/firebase-messaging-compat.js'
+);
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAH_zMNj_j4EmMoX7TIf9RHhIn3MrpYcm8",
+  authDomain: "cumpleanos-hoy.firebaseapp.com",
+  projectId: "cumpleanos-hoy",
+  storageBucket: "cumpleanos-hoy.firebasestorage.app",
+  messagingSenderId: "718825836373",
+  appId: "1:718825836373:web:db2dbecab3b1f1591ea9dc"
+});
+
+const messaging = firebase.messaging();
 
 // Instalación
 self.addEventListener('install', event => {
   event.waitUntil(self.skipWaiting());
 });
 
-// Activación y limpieza de cachés anteriores
+// Activación
 self.addEventListener('activate', event => {
   event.waitUntil(
     caches.keys().then(keys =>
@@ -22,7 +41,24 @@ self.addEventListener('activate', event => {
   );
 });
 
-// Actualización automática de contenido
+// Notificaciones recibidas en segundo plano
+messaging.onBackgroundMessage(payload => {
+  const title =
+    payload.notification?.title || 'Cumpleaños Hoy';
+
+  const options = {
+    body:
+      payload.notification?.body ||
+      'Tenés una nueva notificación.',
+    icon: './icon-192.png',
+    badge: './icon-192.png',
+    data: payload.data || {}
+  };
+
+  return self.registration.showNotification(title, options);
+});
+
+// Actualización automática de archivos
 self.addEventListener('fetch', event => {
   const request = event.request;
 
@@ -37,9 +73,11 @@ self.addEventListener('fetch', event => {
       if (response.ok) {
         const copy = response.clone();
 
-        caches.open(CACHE_NAME).then(cache => {
-          cache.put(request, copy);
-        });
+        event.waitUntil(
+          caches.open(CACHE_NAME).then(cache =>
+            cache.put(request, copy)
+          )
+        );
       }
 
       return response;
@@ -49,13 +87,15 @@ self.addEventListener('fetch', event => {
       if (cached) return cached;
 
       if (request.mode === 'navigate') {
-        return await caches.match('./index.html') ||
-          new Response('Sin conexión. Intentá nuevamente.', {
+        return new Response(
+          'Sin conexión. Intentá nuevamente.',
+          {
             status: 503,
             headers: {
               'Content-Type': 'text/plain; charset=utf-8'
             }
-          });
+          }
+        );
       }
 
       return new Response('', { status: 503 });
@@ -63,7 +103,7 @@ self.addEventListener('fetch', event => {
   );
 });
 
-// Al tocar una notificación, abrir la aplicación
+// Al tocar una notificación
 self.addEventListener('notificationclick', event => {
   event.notification.close();
 
@@ -76,7 +116,7 @@ self.addEventListener('notificationclick', event => {
         if ('focus' in client) return client.focus();
       }
 
-      return self.clients.openWindow('./index.html');
+      return self.clients.openWindow('./');
     })
   );
 });
