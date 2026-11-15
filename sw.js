@@ -1,37 +1,28 @@
 
-const CACHE_NAME = 'cumpleanos-hoy-v3';
+const CACHE_NAME = 'cumpleanos-hoy-v4';
 
-const FILES = [
-  './',
-  './index.html',
-  './manifest.webmanifest',
-  './icon-192.png',
-  './icon-512.png'
-];
-
-// Instalación y precarga
+// Instalación
 self.addEventListener('install', event => {
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(FILES))
-      .then(() => self.skipWaiting())
-  );
+  event.waitUntil(self.skipWaiting());
 });
 
-// Activación y limpieza de versiones anteriores
+// Activación y limpieza de cachés anteriores
 self.addEventListener('activate', event => {
   event.waitUntil(
-    caches.keys()
-      .then(keys => Promise.all(
+    caches.keys().then(keys =>
+      Promise.all(
         keys
-          .filter(key => key.startsWith('cumpleanos-hoy-') && key !== CACHE_NAME)
+          .filter(key =>
+            key.startsWith('cumpleanos-hoy-') &&
+            key !== CACHE_NAME
+          )
           .map(key => caches.delete(key))
-      ))
-      .then(() => self.clients.claim())
+      )
+    ).then(() => self.clients.claim())
   );
 });
 
-// Actualización automática de páginas y recursos
+// Actualización automática de contenido
 self.addEventListener('fetch', event => {
   const request = event.request;
 
@@ -41,39 +32,38 @@ self.addEventListener('fetch', event => {
 
   if (url.origin !== self.location.origin) return;
 
-  // Las páginas se actualizan desde el servidor
-  if (request.mode === 'navigate') {
-    event.respondWith(
-      fetch(request)
-        .then(response => {
-          const copy = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => cache.put('./index.html', copy));
-          return response;
-        })
-        .catch(() => caches.match('./index.html'))
-    );
-    return;
-  }
-
-  // Recursos: caché primero y actualización en segundo plano
   event.respondWith(
-    caches.match(request).then(cached => {
-      const network = fetch(request).then(response => {
-        if (response.ok) {
-          const copy = response.clone();
-          caches.open(CACHE_NAME)
-            .then(cache => cache.put(request, copy));
-        }
-        return response;
-      });
+    fetch(request).then(response => {
+      if (response.ok) {
+        const copy = response.clone();
 
-      return cached || network;
+        caches.open(CACHE_NAME).then(cache => {
+          cache.put(request, copy);
+        });
+      }
+
+      return response;
+    }).catch(async () => {
+      const cached = await caches.match(request);
+
+      if (cached) return cached;
+
+      if (request.mode === 'navigate') {
+        return await caches.match('./index.html') ||
+          new Response('Sin conexión. Intentá nuevamente.', {
+            status: 503,
+            headers: {
+              'Content-Type': 'text/plain; charset=utf-8'
+            }
+          });
+      }
+
+      return new Response('', { status: 503 });
     })
   );
 });
 
-// Apertura desde notificaciones
+// Al tocar una notificación, abrir la aplicación
 self.addEventListener('notificationclick', event => {
   event.notification.close();
 
