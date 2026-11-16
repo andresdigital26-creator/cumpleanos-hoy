@@ -1,5 +1,5 @@
 
-const CACHE_NAME = 'cumpleanos-hoy-v7';
+const CACHE_NAME = 'cumpleanos-hoy-v8';
 
 // Firebase
 importScripts(
