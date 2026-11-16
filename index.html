@@ -694,7 +694,7 @@ function dismissSetup(){sessionStorage.setItem('setupDismissed','1');const c=doc
 async function getPushToken(){
   if(!firebase.messaging) throw new Error('Firebase Messaging no está disponible');
   if(!('serviceWorker' in navigator)) throw new Error('Este navegador no admite service workers');
-  const registration = await navigator.serviceWorker.register('./firebase-messaging-sw.js');
+  const registration = await navigator.serviceWorker.register('./sw.js');
   const messaging = firebase.messaging();
   const token = await messaging.getToken({
     vapidKey: 'BAI8Jf92y8gsZ6j950DyBxtoZOMrkUkzHGgWn07FYNWmKqMjw2hnGrmEnpI4uDeMjXEt3KHdGOnT6gNw_TPod8Q',
